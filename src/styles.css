@@ -3,12 +3,35 @@
   gap: 5px;
 }
 
+.startNode {
+  background-color: yellow;
+  border: 1px solid #000;
+  width: 20px;
+  height: 20px;
+  margin: 0.39px;
+}
+
+.endNode {
+  background-color: cyan;
+  border: 1px solid #000;
+  width: 20px;
+  height: 20px;
+  margin: 0.39px;
+}
+
 .node {
   background-color: #fff;
   border: 1px solid #000;
   width: 20px;
   height: 20px;
   margin: 0.39px;
+}
+
+.node:hover {
+  background-color: #cdcdcd;
+  border: 1px solid #000;
+  width: 20px;
+  height: 20px;
 }
 
 .wall {
@@ -25,13 +48,6 @@
   width: 20px;
   height: 20px;
   margin: 0.39px;
-}
-
-.node:hover {
-  background-color: #cdcdcd;
-  border: 1px solid #000;
-  width: 20px;
-  height: 20px;
 }
 
 /* .node:active { */

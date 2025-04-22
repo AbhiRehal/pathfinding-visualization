@@ -10,7 +10,7 @@ export function Node({
 }) {
   function handleClick() {
     const localGrid = [...grid];
-    const nodeParams = localGrid[row][col];
+    // const nodeParams = localGrid[row][col];
     if (isChecked) {
       localGrid[row][col].className = "wall";
     } else {
