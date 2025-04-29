@@ -12,11 +12,12 @@ export function Node({
     const localGrid = [...grid];
     // const nodeParams = localGrid[row][col];
     if (isChecked) {
-      localGrid[row][col].className = "wall";
+      localGrid[row][col].className = "frontier";
     } else {
-      localGrid[row][col].className = "visited";
+      localGrid[row][col].className = "node";
     }
     setButtonClassNames(localGrid);
+    console.log(`x: ${col} y: ${row} className:${className}`);
   }
 
   return <button className={className} onClick={handleClick}></button>;

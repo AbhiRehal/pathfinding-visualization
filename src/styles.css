@@ -8,7 +8,6 @@
   border: 1px solid #000;
   width: 20px;
   height: 20px;
-  margin: 0.39px;
 }
 
 .endNode {
@@ -16,15 +15,13 @@
   border: 1px solid #000;
   width: 20px;
   height: 20px;
-  margin: 0.39px;
 }
 
 .node {
   background-color: #fff;
-  border: 1px solid #000;
+  border: 1px solid #fff;
   width: 20px;
   height: 20px;
-  margin: 0.39px;
 }
 
 .node:hover {
@@ -39,7 +36,13 @@
   border: 1px solid #000;
   width: 20px;
   height: 20px;
-  margin: 0.39px;
+}
+
+.frontier {
+  background-color: black;
+  border: 1.5px solid red;
+  width: 20px;
+  height: 20px;
 }
 
 .visited {
@@ -47,7 +50,6 @@
   border: 1px solid #000;
   width: 20px;
   height: 20px;
-  margin: 0.39px;
 }
 
 /* .node:active { */

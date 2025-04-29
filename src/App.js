@@ -3,10 +3,12 @@ import { Node } from "./components/node.js";
 import { DebugButton } from "./components/debug.js";
 import { Checkbox } from "./components/checkbox.js";
 import { BFS } from "./components/breadth-first-search.js";
+import { primsMazeGen } from "./utils/prims-maze-gen.js";
 
 export default function Grid() {
   const [isChecked, setChecked] = useState(false);
-  const [grid, setGrid] = useState(() => init(isChecked));
+  const [grid, setGrid] = useState(() => primsMazeGen(isChecked));
+  // const [grid, setGrid] = useState(() => init(isChecked));
 
   function setCheckbox() {
     setChecked(!isChecked);
@@ -66,6 +68,7 @@ function init(isChecked) {
         index: n * i + j,
         visited: false,
         walkable: false,
+        className: "wall",
       };
       if (j == startNode.x && i == startNode.y) {
         node.className = "startNode";
