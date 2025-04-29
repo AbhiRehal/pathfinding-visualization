@@ -1,6 +1,6 @@
 export function primsMazeGen() {
-  const x_dir = 70;
-  const y_dir = 30;
+  const x_dir = 71;
+  const y_dir = 31;
 
   // grid is the board that we have. Start with an empty array for this
   const grid = [];
@@ -96,6 +96,14 @@ export function primsMazeGen() {
     ].className = "node";
   } while (frontier_set.length > 0);
 
+  for (let i = 0; i < y_dir; i++) {
+    for (let j = 0; j < x_dir; j++) {
+      if (i == 0 || i == y_dir - 1 || j == 0 || j == x_dir - 1) {
+        grid[i][j].className = "wall";
+      }
+    }
+  }
+
   return grid;
 }
 
@@ -106,6 +114,6 @@ function getRandomInt(min, max) {
 }
 
 function inBounds(x, y, x_dir, y_dir) {
-  return x < x_dir && x > 0 && y < y_dir && y > 0;
-  // return x < x_dir && x >= 0 && y < y_dir && y >= 0;
+  // return x < x_dir && x > 0 && y < y_dir && y > 0;
+  return x < x_dir && x >= 0 && y < y_dir && y >= 0;
 }
