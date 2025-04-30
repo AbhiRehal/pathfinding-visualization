@@ -104,6 +104,15 @@ export function primsMazeGen() {
     }
   }
 
+  let endNode = {};
+  do {
+    endNode = {
+      x: getRandomInt(1, x_dir - 1),
+      y: getRandomInt(1, y_dir - 1),
+    };
+  } while (grid[endNode.y][endNode.x].className == "wall");
+  grid[endNode.y][endNode.x].className = "endNode";
+
   return grid;
 }
 
@@ -114,6 +123,5 @@ function getRandomInt(min, max) {
 }
 
 function inBounds(x, y, x_dir, y_dir) {
-  // return x < x_dir && x > 0 && y < y_dir && y > 0;
   return x < x_dir && x >= 0 && y < y_dir && y >= 0;
 }
