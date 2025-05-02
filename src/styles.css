@@ -4,60 +4,54 @@
 }
 
 .startNode {
-  background-color: yellow;
-  border: 1px solid #000;
-  width: 20px;
-  height: 20px;
+  background-color: #1703fc;
+  border: 1px solid #1703fc;
+  width: 21px;
+  height: 21px;
 }
 
 .endNode {
-  background-color: cyan;
-  border: 1px solid #000;
-  width: 20px;
-  height: 20px;
+  background-color: #fc0303;
+  border: 1px solid #fc0303;
+  width: 21px;
+  height: 21px;
 }
 
 .node {
   background-color: #fff;
   border: 1px solid #fff;
-  width: 20px;
-  height: 20px;
+  width: 21px;
+  height: 21px;
 }
 
 .node:hover {
   background-color: #cdcdcd;
   border: 1px solid #000;
-  width: 20px;
-  height: 20px;
+  width: 21px;
+  height: 21px;
 }
 
 .wall {
   background-color: black;
   border: 1px solid #000;
-  width: 20px;
-  height: 20px;
+  width: 21px;
+  height: 21px;
 }
 
 .frontier {
   background-color: black;
   border: 1.5px solid red;
-  width: 20px;
-  height: 20px;
+  width: 21px;
+  height: 21px;
 }
 
 .visited {
-  background-color: green;
-  border: 1px solid #000;
-  width: 20px;
-  height: 20px;
+  background-color: #fff000;
+  border: 1px solid #fff000;
+  width: 21px;
+  height: 21px;
+  opacity: 80%;
 }
-
-/* .node:active { */
-/*   background-color: red; */
-/*   border: 1px solid #000; */
-/*   width: 20px; */
-/*   height: 20px; */
-/* } */
 
 .debug-button {
   background-color: #fff;
