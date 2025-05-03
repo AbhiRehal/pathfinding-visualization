@@ -1,6 +1,14 @@
 .header {
   display: flex;
+  justify-content: space-between;
   gap: 5px;
+}
+
+.bfs {
+  background-color: green;
+  border: 1px solid #000;
+  height: 50px;
+  width: 150px;
 }
 
 .startNode {

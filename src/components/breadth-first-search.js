@@ -23,7 +23,7 @@ export function BFS({ grid, setGrid }) {
       }
     }
 
-    const localGrid = [...grid];
+    let localGrid = [...grid];
 
     const directions = [
       { dx: 1, dy: 0 },
@@ -38,19 +38,45 @@ export function BFS({ grid, setGrid }) {
         inBounds(startNode.x + dir.dx, startNode.y + dir.dy, x_dir, y_dir) &&
         localGrid[startNode.y + dir.dy][startNode.x + dir.dx].className != 'wall'
       ) {
-        nodes_to_check.push(localGrid[startNode.y + dir.dy][localGrid.x + dir.dx]);
+        nodes_to_check.push(grid[startNode.y + dir.dy][startNode.x + dir.dx]);
         localGrid[startNode.y + dir.dy][startNode.x + dir.dx].className = 'visited';
       }
     }
 
-    // for (let row = 0; row < localGrid.length; row++) {
-    //   for (let col = 0; col < localGrid[row].length; col++) {
-    //     if (localGrid[row][col].x == startNode.x + 1 && localGrid[row][col].y == startNode.y && localGrid[row][col].visited == false) {
-    //       localGrid[row][col].className = 'visited';
-    //     }
-    //   }
-    // }
-    //
+    let counter = 0;
+    let end_found = false;
+
+    do {
+      const node_being_checked = nodes_to_check.shift();
+      // console.log(`node_being_checked: ${JSON.stringify(node_being_checked)}`);
+      for (const dir of directions) {
+        if (
+          inBounds(node_being_checked.x + dir.dx, node_being_checked.y + dir.dy, x_dir, y_dir) &&
+          localGrid[node_being_checked.y + dir.dy][node_being_checked.x + dir.dx].className == 'endNode'
+        ) {
+          console.log(`gets here`);
+          end_found = true;
+          break;
+        }
+        if (
+          inBounds(node_being_checked.x + dir.dx, node_being_checked.y + dir.dy, x_dir, y_dir) &&
+          localGrid[node_being_checked.y + dir.dy][node_being_checked.x + dir.dx].className != 'wall' &&
+          localGrid[node_being_checked.y + dir.dy][node_being_checked.x + dir.dx].className != 'startNode' &&
+          localGrid[node_being_checked.y + dir.dy][node_being_checked.x + dir.dx].className != 'visited'
+        ) {
+          // console.log(`gets here`);
+          nodes_to_check.push(localGrid[node_being_checked.y + dir.dy][node_being_checked.x + dir.dx]);
+          localGrid[node_being_checked.y + dir.dy][node_being_checked.x + dir.dx].className = 'visited';
+        }
+
+        counter = counter + 1;
+        console.log(`counter: ${counter}`);
+      }
+      // } while (counter < 1000);
+    } while (!end_found && nodes_to_check.length > 0);
+
+    console.log(`finished loop`);
+
     setGrid(localGrid);
   }
 
