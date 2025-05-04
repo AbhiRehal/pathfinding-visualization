@@ -14,7 +14,9 @@ export function primsMazeGen() {
         y: y,
         className: 'wall',
         walkable: false,
-        visited: false
+        visited: false,
+        prev_node_x: 0,
+        prev_node_y: 0
       };
       row.push(node);
     }
@@ -47,6 +49,9 @@ export function primsMazeGen() {
     const random_cell_from_fs = frontier_set.splice(getRandomInt(0, frontier_set.length), 1)[0];
     // get neighbours_cells of the random_cell you just got
     const neighbour_set = [];
+    // for the random_cell we look at its neighbours in all 4 directions. If the neighbours are
+    // either a node/starterNode, the node is added to the neighbour_set otherwise its added to
+    // the frontier_set which we will continue to explore later.
     for (const dir of directions) {
       if (
         inBounds(random_cell_from_fs.x + dir.dx, random_cell_from_fs.y + dir.dy, x_dir, y_dir) &&
@@ -61,13 +66,15 @@ export function primsMazeGen() {
         frontier_set.push(grid[random_cell_from_fs.y + dir.dy][random_cell_from_fs.x + dir.dx]);
       }
     }
+    // we then take a random cell form the neighbours and join the random_cell_from_fs with that neightbour
     const random_neighbour_cell = neighbour_set.splice(getRandomInt(0, neighbour_set.length), 1)[0];
-
     random_cell_from_fs.className = 'node';
-
-    grid[(random_cell_from_fs.y + random_neighbour_cell.y) / 2][(random_cell_from_fs.x + random_neighbour_cell.x) / 2].className = 'node';
+    grid[(random_cell_from_fs.y + random_neighbour_cell.y) / 2][
+      (random_cell_from_fs.x + random_neighbour_cell.x) / 2
+    ].className = 'node';
   } while (frontier_set.length > 0);
 
+  // makes a border of walls
   for (let i = 0; i < y_dir; i++) {
     for (let j = 0; j < x_dir; j++) {
       if (i == 0 || i == y_dir - 1 || j == 0 || j == x_dir - 1) {
@@ -76,6 +83,7 @@ export function primsMazeGen() {
     }
   }
 
+  // adds end node to the maze
   let endNode = {};
   do {
     endNode = {

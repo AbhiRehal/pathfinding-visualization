@@ -61,6 +61,14 @@
   opacity: 80%;
 }
 
+.path {
+  background-color: #32a852;
+  border: 1px solid #32a852;
+  width: 21px;
+  height: 21px;
+  opacity: 80%;
+}
+
 .debug-button {
   background-color: #fff;
   border: 1px solid #000;
