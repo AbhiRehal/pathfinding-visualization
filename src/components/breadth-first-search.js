@@ -1,5 +1,5 @@
 export function BFS({ grid, setGrid }) {
-  function handleClick() {
+  async function handleClick() {
     const x_dir = grid[0].length;
     const y_dir = grid.length;
     const startNode = {
@@ -45,6 +45,9 @@ export function BFS({ grid, setGrid }) {
       }
     }
 
+    setGrid([...localGrid]);
+    await new Promise(resolve => setTimeout(resolve, 5));
+
     let end_found = false;
 
     do {
@@ -75,18 +78,22 @@ export function BFS({ grid, setGrid }) {
           localGrid[node_being_checked.y + dir.dy][node_being_checked.x + dir.dx].className = 'visited';
         }
       }
+      setGrid([...localGrid]);
+      await new Promise(resolve => setTimeout(resolve, 5));
     } while (!end_found && nodes_to_check.length > 0);
     console.log(`Finished loop`);
 
     let node_to_add_to_path = localGrid[endNode.y][endNode.x];
+    node_to_add_to_path = localGrid[node_to_add_to_path.prev_node_y][node_to_add_to_path.prev_node_x];
     do {
       if (node_to_add_to_path.className == 'startNode') {
         break;
       }
       node_to_add_to_path.className = 'path';
       node_to_add_to_path = localGrid[node_to_add_to_path.prev_node_y][node_to_add_to_path.prev_node_x];
+      setGrid([...localGrid]);
+      await new Promise(resolve => setTimeout(resolve, 25));
     } while (node_to_add_to_path.className != 'startNode');
-    localGrid[endNode.y][endNode.x].className = 'endNode';
     setGrid(localGrid);
   }
 
