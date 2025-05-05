@@ -79,7 +79,7 @@ export function BFS({ grid, setGrid }) {
         }
       }
       setGrid([...localGrid]);
-      await new Promise(resolve => setTimeout(resolve, 5));
+      await new Promise(resolve => setTimeout(resolve, 1));
     } while (!end_found && nodes_to_check.length > 0);
     console.log(`Finished loop`);
 

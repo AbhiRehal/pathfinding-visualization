@@ -11,6 +11,13 @@
   width: 150px;
 }
 
+.dfs {
+  background-color: #05cae8;
+  border: 1px solid #000;
+  height: 50px;
+  width: 150px;
+}
+
 .startNode {
   background-color: #1703fc;
   border: 1px solid #1703fc;
