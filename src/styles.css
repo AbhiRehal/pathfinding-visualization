@@ -76,6 +76,14 @@
   opacity: 80%;
 }
 
+.on-stack {
+  background-color: #fc6203;
+  border: 1px solid #fc6203;
+  width: 21px;
+  height: 21px;
+  opacity: 80%;
+}
+
 .debug-button {
   background-color: #fff;
   border: 1px solid #000;
