@@ -18,6 +18,13 @@
   width: 150px;
 }
 
+.pmg {
+  background-color: #b88e72;
+  border: 1px solid #000;
+  height: 50px;
+  width: 150px;
+}
+
 .startNode {
   background-color: #1703fc;
   border: 1px solid #1703fc;

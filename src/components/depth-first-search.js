@@ -83,7 +83,7 @@ export function DFS({ grid, setGrid }) {
         // if the node being checked is surrounded by walls for example it will just set itself to visited
         localGrid[node_being_checked.y][node_being_checked.x].className = 'visited';
         setGrid([...localGrid]);
-        await new Promise(resolve => setTimeout(resolve, 50));
+        await new Promise(resolve => setTimeout(resolve, 1));
       }
     } while (!end_found && stack.length > 0);
 

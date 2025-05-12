@@ -5,12 +5,14 @@ import { Checkbox } from './components/checkbox.js';
 import { BFS } from './components/breadth-first-search.js';
 import { DFS } from './components/depth-first-search.js';
 import { CLEAR } from './components/clear.js';
+import { PrimsMazeGenButton } from './components/prims-maze-gen-button.js';
+import { init } from './utils/init.js';
 import { primsMazeGen } from './utils/prims-maze-gen.js';
 
 export default function Grid() {
   const [isChecked, setChecked] = useState(false);
-  const [grid, setGrid] = useState(() => primsMazeGen(isChecked));
-  // const [grid, setGrid] = useState(() => init(isChecked));
+  // const [grid, setGrid] = useState(() => primsMazeGen(isChecked));
+  const [grid, setGrid] = useState(() => init(isChecked));
 
   function setCheckbox() {
     setChecked(!isChecked);
@@ -24,6 +26,7 @@ export default function Grid() {
         <CLEAR grid={grid} setGrid={setGrid}></CLEAR>
         <BFS grid={grid} setGrid={setGrid}></BFS>
         <DFS grid={grid} setGrid={setGrid}></DFS>
+        <PrimsMazeGenButton grid={grid} setGrid={setGrid}></PrimsMazeGenButton>
       </div>
       {grid.map((row, rowIndex) => (
         <div key={rowIndex}>
