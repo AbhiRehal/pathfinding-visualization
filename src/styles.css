@@ -73,7 +73,16 @@
   width: 21px;
   height: 21px;
   opacity: 80%;
+  transition: background-color 0.5s;
 }
+
+/* .visited { */
+/*   background-color: #fff000; */
+/*   border: 1px solid #fff000; */
+/*   width: 21px; */
+/*   height: 21px; */
+/*   opacity: 80%; */
+/* } */
 
 .path {
   background-color: #32a852;
@@ -81,6 +90,7 @@
   width: 21px;
   height: 21px;
   opacity: 80%;
+  transition: background-color 2s;
 }
 
 .on-stack {

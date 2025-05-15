@@ -1,99 +1,69 @@
+import { inBounds, generatePath, getGridInfo } from '../utils/helpers';
+
 export function BFS({ grid, setGrid }) {
   async function handleClick() {
-    const x_dir = grid[0].length;
-    const y_dir = grid.length;
-    const startNode = {
-      x: 0,
-      y: 0
-    };
-    const endNode = {
-      x: 0,
-      y: 0
-    };
-    for (let row = 0; row < grid.length; row++) {
-      for (let col = 0; col < grid[row].length; col++) {
-        if (grid[row][col].className == 'startNode') {
-          startNode.x = col;
-          startNode.y = row;
-        }
-        if (grid[row][col].className == 'endNode') {
-          endNode.x = col;
-          endNode.y = row;
-        }
-      }
-    }
-
+    const [x_dir, y_dir, startNode, endNode, cardinal_directions] = getGridInfo(grid);
     let localGrid = [...grid];
 
-    const directions = [
-      { dx: 1, dy: 0 },
-      { dx: 0, dy: 1 },
-      { dx: -1, dy: 0 },
-      { dx: 0, dy: -1 }
-    ];
+    let end_found = false;
+    const neighbouring_nodes = [];
 
-    const nodes_to_check = [];
-    for (const dir of directions) {
-      if (
-        inBounds(startNode.x + dir.dx, startNode.y + dir.dy, x_dir, y_dir) &&
-        localGrid[startNode.y + dir.dy][startNode.x + dir.dx].className != 'wall'
-      ) {
-        nodes_to_check.push(grid[startNode.y + dir.dy][startNode.x + dir.dx]);
-        localGrid[startNode.y + dir.dy][startNode.x + dir.dx].className = 'visited';
-        localGrid[startNode.y + dir.dy][startNode.x + dir.dx].prev_node_x = startNode.x;
-        localGrid[startNode.y + dir.dy][startNode.x + dir.dx].prev_node_y = startNode.y;
+    for (const dir of cardinal_directions) {
+      if (!inBounds(startNode.x + dir.dx, startNode.y + dir.dy, x_dir, y_dir)) {
+        continue;
+      }
+
+      const neighbour_node = localGrid[startNode.y + dir.dy][startNode.x + dir.dx];
+
+      // if neighbour is the end we break
+      if (neighbour_node.className == 'endNode') {
+        end_found = true;
+        break;
+      }
+      // neigbour isnt a wall i.e. its a passage we push it onto array
+      if (neighbour_node.className != 'wall') {
+        neighbour_node.prev_node_x = startNode.x;
+        neighbour_node.prev_node_y = startNode.y;
+        neighbouring_nodes.push(neighbour_node);
+        neighbour_node.className = 'visited';
       }
     }
 
     setGrid([...localGrid]);
-    await new Promise(resolve => setTimeout(resolve, 5));
+    await new Promise(resolve => setTimeout(resolve, 1));
 
-    let end_found = false;
-
-    do {
-      const node_being_checked = nodes_to_check.shift();
-      for (const dir of directions) {
-        if (
-          inBounds(node_being_checked.x + dir.dx, node_being_checked.y + dir.dy, x_dir, y_dir) &&
-          localGrid[node_being_checked.y + dir.dy][node_being_checked.x + dir.dx].className == 'endNode'
-        ) {
-          localGrid[node_being_checked.y + dir.dy][node_being_checked.x + dir.dx].prev_node_x =
-            node_being_checked.x;
-          localGrid[node_being_checked.y + dir.dy][node_being_checked.x + dir.dx].prev_node_y =
-            node_being_checked.y;
+    while (!end_found && neighbouring_nodes.length > 0) {
+      const current_node = neighbouring_nodes.shift();
+      for (const dir of cardinal_directions) {
+        const neighbour_node = localGrid[current_node.y + dir.dy][current_node.x + dir.dx];
+        if (!inBounds(neighbour_node.x, neighbour_node.y, x_dir, y_dir)) {
+          continue;
+        }
+        if (neighbour_node.className == 'endNode') {
+          neighbour_node.prev_node_x = current_node.x;
+          neighbour_node.prev_node_y = current_node.y;
           end_found = true;
           break;
         }
-        if (
-          inBounds(node_being_checked.x + dir.dx, node_being_checked.y + dir.dy, x_dir, y_dir) &&
-          localGrid[node_being_checked.y + dir.dy][node_being_checked.x + dir.dx].className != 'wall' &&
-          localGrid[node_being_checked.y + dir.dy][node_being_checked.x + dir.dx].className != 'startNode' &&
-          localGrid[node_being_checked.y + dir.dy][node_being_checked.x + dir.dx].className != 'visited'
-        ) {
-          localGrid[node_being_checked.y + dir.dy][node_being_checked.x + dir.dx].prev_node_x =
-            node_being_checked.x;
-          localGrid[node_being_checked.y + dir.dy][node_being_checked.x + dir.dx].prev_node_y =
-            node_being_checked.y;
-          nodes_to_check.push(localGrid[node_being_checked.y + dir.dy][node_being_checked.x + dir.dx]);
-          localGrid[node_being_checked.y + dir.dy][node_being_checked.x + dir.dx].className = 'visited';
+        if (neighbour_node.className == 'node') {
+          neighbour_node.prev_node_x = current_node.x;
+          neighbour_node.prev_node_y = current_node.y;
+          neighbouring_nodes.push(neighbour_node);
+          neighbour_node.className = 'visited';
         }
       }
       setGrid([...localGrid]);
       await new Promise(resolve => setTimeout(resolve, 1));
-    } while (!end_found && nodes_to_check.length > 0);
-    console.log(`Finished loop`);
+    }
 
-    let node_to_add_to_path = localGrid[endNode.y][endNode.x];
-    node_to_add_to_path = localGrid[node_to_add_to_path.prev_node_y][node_to_add_to_path.prev_node_x];
-    do {
-      if (node_to_add_to_path.className == 'startNode') {
-        break;
-      }
-      node_to_add_to_path.className = 'path';
-      node_to_add_to_path = localGrid[node_to_add_to_path.prev_node_y][node_to_add_to_path.prev_node_x];
+    const path = generatePath(localGrid, endNode);
+    while (path.length > 0) {
+      let node = path.pop();
+      node.className = 'path';
       setGrid([...localGrid]);
       await new Promise(resolve => setTimeout(resolve, 25));
-    } while (node_to_add_to_path.className != 'startNode');
+    }
+
     setGrid(localGrid);
   }
 
@@ -102,14 +72,4 @@ export function BFS({ grid, setGrid }) {
       BFS
     </button>
   );
-}
-
-function getRandomInt(min, max) {
-  const minimum = Math.ceil(min);
-  const maximum = Math.floor(max);
-  return Math.floor(Math.random() * (maximum - minimum) + minimum);
-}
-
-function inBounds(x, y, x_dir, y_dir) {
-  return x < x_dir && x >= 0 && y < y_dir && y >= 0;
 }

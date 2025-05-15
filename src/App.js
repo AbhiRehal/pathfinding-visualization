@@ -7,7 +7,6 @@ import { DFS } from './components/depth-first-search.js';
 import { CLEAR } from './components/clear.js';
 import { PrimsMazeGenButton } from './components/prims-maze-gen-button.js';
 import { init } from './utils/init.js';
-import { primsMazeGen } from './utils/prims-maze-gen.js';
 
 export default function Grid() {
   const [isChecked, setChecked] = useState(false);
