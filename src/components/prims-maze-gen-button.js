@@ -10,6 +10,8 @@ export function PrimsMazeGenButton({ grid, setGrid }) {
       x: 0,
       y: 0
     };
+
+    let localGrid = [...grid];
     for (let row = 0; row < grid.length; row++) {
       for (let col = 0; col < grid[row].length; col++) {
         if (grid[row][col].className == 'startNode') {
@@ -20,10 +22,13 @@ export function PrimsMazeGenButton({ grid, setGrid }) {
           endNode.x = col;
           endNode.y = row;
         }
+        // set the blanks to walls to do algorithm
+        if (localGrid[row][col].className == 'blank') {
+          localGrid[row][col].className = 'wall';
+        }
       }
     }
 
-    let localGrid = [...grid];
     const frontier_set = [];
     localGrid[startNode.y][startNode.x].className = 'startNode';
 

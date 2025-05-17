@@ -14,7 +14,7 @@ export function init() {
         index: x * y + x,
         x: x,
         y: y,
-        className: 'wall',
+        className: 'blank',
         walkable: false,
         visited: false,
         prev_node_x: 0,
