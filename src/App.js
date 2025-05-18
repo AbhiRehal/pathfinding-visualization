@@ -41,7 +41,7 @@ export default function Grid() {
               className={ele.className}
               row={rowIndex}
               col={colIndex}
-              setButtonClassNames={setGrid}
+              setGrid={setGrid}
               grid={grid}
               prev_node_row={ele.prev_node_y}
               prev_node_col={ele.prev_node_x}

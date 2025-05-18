@@ -1,6 +1,4 @@
-import { getGridInfo, getCompassDirections } from '../utils/helpers';
-
-export async function dijkstras(grid, setGrid, inBounds, generatePath, getGridInfo) {
+export async function dijkstras(grid, setGrid, inBounds, generatePath, getGridInfo, getCompassDirections) {
   const [x_dir, y_dir, startNode, endNode] = getGridInfo(grid);
   const compass_directions = getCompassDirections('both');
   let localGrid = [...grid];
