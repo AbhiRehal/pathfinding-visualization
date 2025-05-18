@@ -1,12 +1,12 @@
-export async function breadthFirstSearch(grid, setGrid, inBounds, generatePath, getGridInfo) {
+export async function depthFirstSearch(grid, setGrid, inBounds, generatePath, getGridInfo) {
   const [x_dir, y_dir, startNode, endNode, cardinal_directions] = getGridInfo(grid);
   let localGrid = [...grid];
 
   let end_found = false;
-  const neighbouring_nodes = [];
+  const stack = [];
 
   for (const dir of cardinal_directions) {
-    if (!inBounds(startNode.x + dir.dx, startNode.y + dir.dy, x_dir, y_dir)) {
+    if (!inBounds(startNode.x, startNode.y, x_dir, y_dir)) {
       continue;
     }
 
@@ -17,23 +17,23 @@ export async function breadthFirstSearch(grid, setGrid, inBounds, generatePath, 
       end_found = true;
       break;
     }
-    // neigbour isnt a wall i.e. its a passage we push it onto array
+
     if (neighbour_node.className != 'wall') {
+      stack.push(neighbour_node);
       neighbour_node.prev_node_x = startNode.x;
       neighbour_node.prev_node_y = startNode.y;
-      neighbouring_nodes.push(neighbour_node);
-      neighbour_node.className = 'visited';
+      neighbour_node.className = 'on-stack';
     }
   }
 
   setGrid([...localGrid]);
   await new Promise(resolve => setTimeout(resolve, 1));
 
-  while (!end_found && neighbouring_nodes.length > 0) {
-    const current_node = neighbouring_nodes.shift();
+  while (!end_found && stack.length > 0) {
+    const current_node = stack.pop();
     for (const dir of cardinal_directions) {
       const neighbour_node = localGrid[current_node.y + dir.dy][current_node.x + dir.dx];
-      if (!inBounds(neighbour_node.x, neighbour_node.y, x_dir, y_dir)) {
+      if (!inBounds(current_node.x, current_node.y, x_dir, y_dir)) {
         continue;
       }
       if (neighbour_node.className == 'endNode') {
@@ -43,14 +43,18 @@ export async function breadthFirstSearch(grid, setGrid, inBounds, generatePath, 
         break;
       }
       if (neighbour_node.className == 'node') {
+        stack.push(neighbour_node);
+        neighbour_node.className = 'on-stack';
         neighbour_node.prev_node_x = current_node.x;
         neighbour_node.prev_node_y = current_node.y;
-        neighbouring_nodes.push(neighbour_node);
-        neighbour_node.className = 'visited';
+        current_node.className = 'visited';
+        continue;
       }
+      // if the node being checked is surrounded by walls for example it will just set itself to visited
+      current_node.className = 'visited';
+      setGrid([...localGrid]);
+      await new Promise(resolve => setTimeout(resolve, 1));
     }
-    setGrid([...localGrid]);
-    await new Promise(resolve => setTimeout(resolve, 1));
   }
 
   const path = generatePath(localGrid, endNode);

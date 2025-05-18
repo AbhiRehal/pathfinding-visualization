@@ -14,6 +14,10 @@ export function generatePath(grid, endNode) {
 
   let path_node = localGrid[endNode.y][endNode.x];
   path_node = localGrid[path_node.prev_node_y][path_node.prev_node_x];
+  if (path_node.x == 0 && path_node.y == 0) {
+    // means there is no path found to the end
+    return path;
+  }
 
   do {
     if (path_node.className == 'startNode') {

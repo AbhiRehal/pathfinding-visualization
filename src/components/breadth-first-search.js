@@ -1,4 +1,4 @@
-import { breadthFirstSearch } from '../algorithms/breadth-first-serach';
+import { breadthFirstSearch } from '../algorithms/breadth-first-search';
 import { inBounds, generatePath, getGridInfo } from '../utils/helpers';
 
 export function BFS({ grid, setGrid }) {
