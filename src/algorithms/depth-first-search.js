@@ -40,17 +40,17 @@ export async function depthFirstSearch(
   while (!end_found && stack.length > 0) {
     const current_node = stack.pop();
     for (const dir of cardinal_directions) {
-      const neighbour_node = localGrid[current_node.y + dir.dy][current_node.x + dir.dx];
-      if (!inBounds(current_node.x, current_node.y, x_dir, y_dir)) {
+      if (!inBounds(current_node.x + dir.dx, current_node.y + dir.dy, x_dir, y_dir)) {
         continue;
       }
+      const neighbour_node = localGrid[current_node.y + dir.dy][current_node.x + dir.dx];
       if (neighbour_node.className == 'endNode') {
         neighbour_node.prev_node_x = current_node.x;
         neighbour_node.prev_node_y = current_node.y;
         end_found = true;
         break;
       }
-      if (neighbour_node.className == 'node') {
+      if (neighbour_node.className == 'node' || neighbour_node.className == 'blank') {
         stack.push(neighbour_node);
         neighbour_node.className = 'on-stack';
         neighbour_node.prev_node_x = current_node.x;
