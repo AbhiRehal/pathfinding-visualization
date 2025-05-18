@@ -53,11 +53,26 @@ export function getGridInfo(grid) {
       }
     }
   }
-  const cardinal_directions = [
+  return [x_dir, y_dir, startNode, endNode];
+}
+
+export function getCompassDirections(required_directions) {
+  if (required_directions == 'both') {
+    return [
+      { dx: 1, dy: 0 },
+      { dx: 1, dy: 1 },
+      { dx: 0, dy: 1 },
+      { dx: -1, dy: 1 },
+      { dx: -1, dy: 0 },
+      { dx: -1, dy: -1 },
+      { dx: 0, dy: -1 },
+      { dx: 1, dy: -1 }
+    ];
+  }
+  return [
     { dx: 1, dy: 0 },
     { dx: 0, dy: 1 },
     { dx: -1, dy: 0 },
     { dx: 0, dy: -1 }
   ];
-  return [x_dir, y_dir, startNode, endNode, cardinal_directions];
 }

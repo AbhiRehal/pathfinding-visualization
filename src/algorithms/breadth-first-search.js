@@ -1,5 +1,13 @@
-export async function breadthFirstSearch(grid, setGrid, inBounds, generatePath, getGridInfo) {
-  const [x_dir, y_dir, startNode, endNode, cardinal_directions] = getGridInfo(grid);
+export async function breadthFirstSearch(
+  grid,
+  setGrid,
+  inBounds,
+  generatePath,
+  getGridInfo,
+  getCompassDirections
+) {
+  const [x_dir, y_dir, startNode, endNode] = getGridInfo(grid);
+  const cardinal_directions = getCompassDirections();
   let localGrid = [...grid];
 
   let end_found = false;

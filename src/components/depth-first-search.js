@@ -1,9 +1,9 @@
 import { depthFirstSearch } from '../algorithms/depth-first-search';
-import { inBounds, generatePath, getGridInfo } from '../utils/helpers';
+import { inBounds, generatePath, getGridInfo, getCompassDirections } from '../utils/helpers';
 
 export function DFS({ grid, setGrid }) {
   async function handleClick() {
-    depthFirstSearch(grid, setGrid, inBounds, generatePath, getGridInfo);
+    depthFirstSearch(grid, setGrid, inBounds, generatePath, getGridInfo, getCompassDirections);
   }
 
   return (

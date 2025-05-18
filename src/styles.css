@@ -18,6 +18,13 @@
   width: 150px;
 }
 
+.dijkstras {
+  background-color: #fc03d3;
+  border: 1px solid #000;
+  height: 50px;
+  width: 150px;
+}
+
 .pmg {
   background-color: #b88e72;
   border: 1px solid #000;
@@ -82,14 +89,6 @@
   opacity: 80%;
   transition: background-color 0.5s;
 }
-
-/* .visited { */
-/*   background-color: #fff000; */
-/*   border: 1px solid #fff000; */
-/*   width: 21px; */
-/*   height: 21px; */
-/*   opacity: 80%; */
-/* } */
 
 .path {
   background-color: #32a852;
