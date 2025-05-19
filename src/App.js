@@ -9,10 +9,13 @@ import { Clear } from './components/clear.js';
 import { PrimsMazeGenButton } from './components/prims-maze-gen-button.js';
 import { init } from './utils/init.js';
 import { Dijkstras } from './components/dijkstras-button.js';
+import { AlgorithmDropdown } from './components/algorithm-dropdown.js';
+import { VisualizeButton } from './components/visualize-button.js';
 
 export default function Grid() {
   const [isChecked, setChecked] = useState(false);
   const [grid, setGrid] = useState(() => init(isChecked));
+  const [algorithm, setAlgorithm] = useState('breadth-first-search');
 
   function setCheckbox() {
     setChecked(!isChecked);
@@ -21,6 +24,8 @@ export default function Grid() {
   return (
     <>
       <div className="header">
+        <AlgorithmDropdown setAlgorithm={setAlgorithm}></AlgorithmDropdown>
+        <VisualizeButton algorithm={algorithm} grid={grid} setGrid={setGrid}></VisualizeButton>
         <DebugButton grid={grid}></DebugButton>
         <Checkbox isChecked={isChecked} setChecked={setChecked}></Checkbox>
         <ClearAll grid={grid} setGrid={setGrid}></ClearAll>

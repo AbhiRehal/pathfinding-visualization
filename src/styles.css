@@ -32,6 +32,13 @@
   width: 150px;
 }
 
+.visualize {
+  background-color: #fff;
+  border: 1px solid #000;
+  height: 50px;
+  width: 150px;
+}
+
 .startNode {
   background-color: #1703fc;
   border: 1px solid #1703fc;
@@ -120,4 +127,20 @@
 .set-wall-button {
   background-color: cyan;
   border: 1px solid #000;
+}
+
+label {
+  font-family: sans-serif;
+  font-size: 1rem;
+  padding-right: 10px;
+}
+
+select {
+  font-size: 0.9rem;
+  padding: 2px 5px;
+}
+
+option {
+  font-size: 0.9rem;
+  padding: 2px 5px;
 }
