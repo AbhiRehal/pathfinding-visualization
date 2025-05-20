@@ -15,7 +15,7 @@ import { VisualizeButton } from './components/visualize-button.js';
 export default function Grid() {
   const [isChecked, setChecked] = useState(false);
   const [grid, setGrid] = useState(() => init(isChecked));
-  const [algorithm, setAlgorithm] = useState('breadth-first-search');
+  const [algorithm, setAlgorithm] = useState('a-star');
 
   function setCheckbox() {
     setChecked(!isChecked);
@@ -24,15 +24,10 @@ export default function Grid() {
   return (
     <>
       <div className="header">
-        <AlgorithmDropdown setAlgorithm={setAlgorithm}></AlgorithmDropdown>
-        <VisualizeButton algorithm={algorithm} grid={grid} setGrid={setGrid}></VisualizeButton>
-        <DebugButton grid={grid}></DebugButton>
-        <Checkbox isChecked={isChecked} setChecked={setChecked}></Checkbox>
         <ClearAll grid={grid} setGrid={setGrid}></ClearAll>
         <Clear grid={grid} setGrid={setGrid}></Clear>
-        <BFS grid={grid} setGrid={setGrid}></BFS>
-        <DFS grid={grid} setGrid={setGrid}></DFS>
-        <Dijkstras grid={grid} setGrid={setGrid}></Dijkstras>
+        <VisualizeButton algorithm={algorithm} grid={grid} setGrid={setGrid}></VisualizeButton>
+        <AlgorithmDropdown setAlgorithm={setAlgorithm}></AlgorithmDropdown>
         <PrimsMazeGenButton grid={grid} setGrid={setGrid}></PrimsMazeGenButton>
       </div>
       {grid.map((row, rowIndex) => (

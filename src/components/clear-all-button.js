@@ -18,7 +18,7 @@ export function ClearAll({ grid, setGrid }) {
 
   return (
     <button className="clear-button" onClick={handleClick}>
-      CLEAR ALL
+      Clear Grid
     </button>
   );
 }
