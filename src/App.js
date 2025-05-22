@@ -13,12 +13,16 @@ import { AlgorithmDropdown } from './components/algorithm-dropdown.js';
 import { VisualizeButton } from './components/visualize-button.js';
 
 export default function Grid() {
-  const [isChecked, setChecked] = useState(false);
-  const [grid, setGrid] = useState(() => init(isChecked));
+  const [mouseIsDown, setMouseDown] = useState(false);
+  const [grid, setGrid] = useState(() => init());
   const [algorithm, setAlgorithm] = useState('a-star');
 
-  function setCheckbox() {
-    setChecked(!isChecked);
+  function handleGridMouseDown() {
+    setMouseDown(true);
+  }
+
+  function handleGridMouseUp() {
+    setMouseDown(false);
   }
 
   return (
@@ -30,25 +34,27 @@ export default function Grid() {
         <AlgorithmDropdown setAlgorithm={setAlgorithm}></AlgorithmDropdown>
         <PrimsMazeGenButton grid={grid} setGrid={setGrid}></PrimsMazeGenButton>
       </div>
-      {grid.map((row, rowIndex) => (
-        <div key={rowIndex}>
-          {row.map((ele, colIndex) => (
-            <Node
-              key={ele.index}
-              isChecked={isChecked}
-              visited={ele.visited}
-              walkable={ele.walkable}
-              className={ele.className}
-              row={rowIndex}
-              col={colIndex}
-              setGrid={setGrid}
-              grid={grid}
-              prev_node_row={ele.prev_node_y}
-              prev_node_col={ele.prev_node_x}
-            ></Node>
-          ))}
-        </div>
-      ))}
+      <div onMouseDown={handleGridMouseDown} onMouseUp={handleGridMouseUp}>
+        {grid.map((row, rowIndex) => (
+          <div key={rowIndex}>
+            {row.map((ele, colIndex) => (
+              <Node
+                key={ele.index}
+                mouseIsDown={mouseIsDown}
+                visited={ele.visited}
+                walkable={ele.walkable}
+                className={ele.className}
+                row={rowIndex}
+                col={colIndex}
+                setGrid={setGrid}
+                grid={grid}
+                prev_node_row={ele.prev_node_y}
+                prev_node_col={ele.prev_node_x}
+              ></Node>
+            ))}
+          </div>
+        ))}
+      </div>
     </>
   );
 }

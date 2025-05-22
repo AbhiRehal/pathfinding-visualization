@@ -4,7 +4,7 @@ export function Node({
   walkable = 'false',
   row,
   col,
-  isChecked,
+  mouseIsDown,
   setGrid,
   grid,
   prev_node_row,
@@ -26,5 +26,19 @@ export function Node({
     setGrid(localGrid);
   }
 
-  return <button className={className} onClick={handleClick}></button>;
+  function handleMouseDrag() {
+    if (mouseIsDown) {
+      let localGrid = [...grid];
+
+      if (className != 'wall') {
+        localGrid[row][col].className = 'wall';
+      } else {
+        localGrid[row][col].className = 'node';
+      }
+
+      setGrid(localGrid);
+    }
+  }
+
+  return <button className={className} onClick={handleClick} onMouseEnter={handleMouseDrag}></button>;
 }
