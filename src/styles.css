@@ -41,14 +41,14 @@
 
 .startNode {
   background-color: #1703fc;
-  border: 1px solid #1703fc;
+  border: 1px solid #fff;
   width: 21px;
   height: 21px;
 }
 
 .endNode {
   background-color: #fc0303;
-  border: 1px solid #fc0303;
+  border: 1px solid #fff;
   width: 21px;
   height: 21px;
 }
@@ -62,7 +62,7 @@
 
 .node {
   background-color: #fff;
-  border: 1px solid #fff;
+  border: 1px solid #cdcdcd;
   width: 21px;
   height: 21px;
 }
@@ -90,7 +90,7 @@
 
 .visited {
   background-color: #fff000;
-  border: 1px solid #fff000;
+  border: 1px solid #fff;
   width: 21px;
   height: 21px;
   opacity: 80%;
@@ -99,7 +99,7 @@
 
 .path {
   background-color: #32a852;
-  border: 1px solid #32a852;
+  border: 1px solid #fff;
   width: 21px;
   height: 21px;
   opacity: 80%;
@@ -108,7 +108,7 @@
 
 .on-stack {
   background-color: #fc6203;
-  border: 1px solid #fc6203;
+  border: 1px solid #fff;
   width: 21px;
   height: 21px;
   opacity: 80%;
