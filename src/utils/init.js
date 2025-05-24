@@ -1,4 +1,4 @@
-import { getRandomInt } from './helpers';
+import { getRandomInt, getRandomEvenInt } from './helpers';
 
 export function init() {
   const x_dir = 71;
@@ -18,7 +18,9 @@ export function init() {
         walkable: false,
         visited: false,
         prev_node_x: 0,
-        prev_node_y: 0
+        prev_node_y: 0,
+        weight: 1,
+        distance: 1_000_000
       };
       row.push(node);
     }

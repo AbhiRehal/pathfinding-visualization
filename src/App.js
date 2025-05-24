@@ -50,6 +50,8 @@ export default function Grid() {
                 grid={grid}
                 prev_node_row={ele.prev_node_y}
                 prev_node_col={ele.prev_node_x}
+                weight={ele.weight}
+                distance={ele.distance}
               ></Node>
             ))}
           </div>
