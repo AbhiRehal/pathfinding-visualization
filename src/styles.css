@@ -4,27 +4,6 @@
   gap: 5px;
 }
 
-.bfs {
-  background-color: green;
-  border: 1px solid #000;
-  height: 50px;
-  width: 150px;
-}
-
-.dfs {
-  background-color: #05cae8;
-  border: 1px solid #000;
-  height: 50px;
-  width: 150px;
-}
-
-.dijkstras {
-  background-color: #fc03d3;
-  border: 1px solid #000;
-  height: 50px;
-  width: 150px;
-}
-
 .pmg {
   background-color: #b88e72;
   border: 1px solid #000;
