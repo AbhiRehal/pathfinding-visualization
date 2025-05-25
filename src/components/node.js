@@ -40,5 +40,19 @@ export function Node({
     }
   }
 
-  return <button className={className} onClick={handleClick} onMouseEnter={handleMouseDrag}></button>;
+  function handleInitialClick() {
+    let localGrid = [...grid];
+
+    if (className != 'wall') {
+      localGrid[row][col].className = 'wall';
+    } else {
+      localGrid[row][col].className = 'node';
+    }
+
+    setGrid(localGrid);
+  }
+
+  return (
+    <button className={className} onMouseDown={handleInitialClick} onMouseEnter={handleMouseDrag}></button>
+  );
 }
