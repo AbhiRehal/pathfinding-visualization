@@ -57,6 +57,14 @@ export function getGridInfo(grid) {
 }
 
 export function getCompassDirections(required_directions) {
+  if (required_directions == 'maze') {
+    return [
+      { dx: 2, dy: 0 },
+      { dx: 0, dy: 2 },
+      { dx: -2, dy: 0 },
+      { dx: 0, dy: -2 }
+    ];
+  }
   if (required_directions == 'both') {
     return [
       { dx: 1, dy: 0 },
