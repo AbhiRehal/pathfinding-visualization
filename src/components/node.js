@@ -56,7 +56,7 @@ export function Node({
   function handleMouseEnter() {
     if (mouseIsDown && draggingStartNode) {
       let localGrid = [...grid];
-      localGrid[row][col].prevClassName = localGrid[row][col].className;
+      localGrid[row][col].prev_ClassName = localGrid[row][col].className;
       localGrid[row][col].className = 'startNode';
       setGrid(localGrid);
       return;
@@ -64,7 +64,7 @@ export function Node({
 
     if (mouseIsDown && draggingEndNode) {
       let localGrid = [...grid];
-      localGrid[row][col].prevClassName = localGrid[row][col].className;
+      localGrid[row][col].prev_ClassName = localGrid[row][col].className;
       localGrid[row][col].className = 'endNode';
       setGrid(localGrid);
       return;
@@ -87,7 +87,7 @@ export function Node({
   function handleMouseLeave() {
     if (draggingStartNode || draggingEndNode) {
       let localGrid = [...grid];
-      localGrid[row][col].className = localGrid[row][col].prevClassName;
+      localGrid[row][col].className = localGrid[row][col].prev_className;
       setGrid(localGrid);
     }
   }
