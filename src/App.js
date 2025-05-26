@@ -16,6 +16,8 @@ import { GenerateMazeDropdown } from './components/generate-maze-dropdown.js';
 
 export default function Grid() {
   const [mouseIsDown, setMouseDown] = useState(false);
+  const [draggingStartNode, setDraggingStartNode] = useState(false);
+  const [draggingEndNode, setDraggingEndNode] = useState(false);
   const [grid, setGrid] = useState(() => init());
   const [algorithm, setAlgorithm] = useState('breadth-first-search');
   const [mazeGenAlgorithm, setMazeGenAlgorithm] = useState('prims');
@@ -37,9 +39,8 @@ export default function Grid() {
         <AlgorithmDropdown setAlgorithm={setAlgorithm}></AlgorithmDropdown>
         <GenerateMazeButton algorithm={mazeGenAlgorithm} grid={grid} setGrid={setGrid}></GenerateMazeButton>
         <GenerateMazeDropdown setAlgorithm={setMazeGenAlgorithm}></GenerateMazeDropdown>
-        <PrimsMazeGenButton grid={grid} setGrid={setGrid}></PrimsMazeGenButton>
       </div>
-      <div onMouseDown={handleGridMouseDown} onMouseUp={handleGridMouseUp}>
+      <div className="grid" onMouseDown={handleGridMouseDown} onMouseUp={handleGridMouseUp}>
         {grid.map((row, rowIndex) => (
           <div key={rowIndex}>
             {row.map((ele, colIndex) => (
@@ -57,6 +58,11 @@ export default function Grid() {
                 prev_node_col={ele.prev_node_x}
                 weight={ele.weight}
                 distance={ele.distance}
+                draggingStartNode={draggingStartNode}
+                setDraggingStartNode={setDraggingStartNode}
+                draggingEndNode={draggingEndNode}
+                setDraggingEndNode={setDraggingEndNode}
+                prevClassName={ele.prev_className}
               ></Node>
             ))}
           </div>

@@ -1,3 +1,7 @@
+.grid {
+  margin: 5vmin;
+}
+
 .header {
   display: flex;
   justify-content: space-between;
@@ -34,7 +38,7 @@
 
 .blank {
   background-color: #fff;
-  border: 1px solid #34efeb;
+  border: 1px solid #cdcdcd;
   width: 21px;
   height: 21px;
 }

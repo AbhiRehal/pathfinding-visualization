@@ -8,14 +8,25 @@ export function Node({
   setGrid,
   grid,
   prev_node_row,
-  prev_node_col
+  prev_node_col,
+  draggingStartNode,
+  setDraggingStartNode,
+  draggingEndNode,
+  setDraggingEndNode,
+  prevClassName
 }) {
-  function handleClick() {
-    console.log(
-      `x: ${col} y: ${row} className:${className} prev_node_row: ${prev_node_row} prev_node_col: ${prev_node_col}}`
-    );
-
+  function handleMouseDown() {
     let localGrid = [...grid];
+
+    if (className == 'startNode') {
+      setDraggingStartNode(true);
+      return;
+    }
+
+    if (className == 'endNode') {
+      setDraggingEndNode(true);
+      return;
+    }
 
     if (className != 'wall') {
       localGrid[row][col].className = 'wall';
@@ -26,33 +37,68 @@ export function Node({
     setGrid(localGrid);
   }
 
-  function handleMouseDrag() {
+  function handleMouseUp() {
+    let localGrid = [...grid];
+
+    if (draggingStartNode) {
+      localGrid[row][col].className = 'startNode';
+      setDraggingStartNode(false);
+    }
+
+    if (draggingEndNode) {
+      localGrid[row][col].className = 'endNode';
+      setDraggingEndNode(false);
+    }
+
+    setGrid(localGrid);
+  }
+
+  function handleMouseEnter() {
+    if (mouseIsDown && draggingStartNode) {
+      let localGrid = [...grid];
+      localGrid[row][col].prevClassName = localGrid[row][col].className;
+      localGrid[row][col].className = 'startNode';
+      setGrid(localGrid);
+      return;
+    }
+
+    if (mouseIsDown && draggingEndNode) {
+      let localGrid = [...grid];
+      localGrid[row][col].prevClassName = localGrid[row][col].className;
+      localGrid[row][col].className = 'endNode';
+      setGrid(localGrid);
+      return;
+    }
+
     if (mouseIsDown) {
       let localGrid = [...grid];
-
+      if (className == 'startNode' || className == 'endNode') {
+        return;
+      }
       if (className != 'wall') {
         localGrid[row][col].className = 'wall';
       } else {
         localGrid[row][col].className = 'node';
       }
-
       setGrid(localGrid);
     }
   }
 
-  function handleInitialClick() {
-    let localGrid = [...grid];
-
-    if (className != 'wall') {
-      localGrid[row][col].className = 'wall';
-    } else {
-      localGrid[row][col].className = 'node';
+  function handleMouseLeave() {
+    if (draggingStartNode || draggingEndNode) {
+      let localGrid = [...grid];
+      localGrid[row][col].className = localGrid[row][col].prevClassName;
+      setGrid(localGrid);
     }
-
-    setGrid(localGrid);
   }
 
   return (
-    <button className={className} onMouseDown={handleInitialClick} onMouseEnter={handleMouseDrag}></button>
+    <button
+      className={className}
+      onMouseDown={handleMouseDown}
+      onMouseEnter={handleMouseEnter}
+      onMouseLeave={handleMouseLeave}
+      onMouseUp={handleMouseUp}
+    ></button>
   );
 }
