@@ -4,7 +4,7 @@ import { depthFirstSearch } from '../algorithms/depth-first-search';
 import { dijkstras } from '../algorithms/dijkstras';
 import { inBounds, generatePath, getGridInfo, getCompassDirections } from '../utils/helpers';
 
-export function VisualizeButton({ algorithm, grid, setGrid }) {
+export function VisualizeButton({ algorithm, grid, setGrid, setPathHasBeenVisualized }) {
   async function handleClick() {
     if (algorithm == 'a-star') {
       aStar(grid, setGrid, inBounds, generatePath, getGridInfo, getCompassDirections);
@@ -15,6 +15,7 @@ export function VisualizeButton({ algorithm, grid, setGrid }) {
     } else if (algorithm == 'dijkstras') {
       dijkstras(grid, setGrid, inBounds, generatePath, getGridInfo, getCompassDirections);
     }
+    setPathHasBeenVisualized(true);
   }
 
   return (

@@ -84,3 +84,23 @@ export function getCompassDirections(required_directions) {
     { dx: 0, dy: -1 }
   ];
 }
+
+export function clearPath(grid, setGrid) {
+  const localGrid = [...grid];
+  const x_dir = localGrid[0].length;
+  const y_dir = localGrid.length;
+  for (let row = 0; row < y_dir; row++) {
+    for (let col = 0; col < x_dir; col++) {
+      const node = localGrid[row][col];
+      if (node.className != 'wall' && node.className != 'startNode' && node.className != 'endNode') {
+        node.className = 'node';
+      }
+      if ((node.className == 'startNode' || node.className == 'endNode') && !node.prev_className == 'wall') {
+        node.prev_className = 'node';
+      }
+      node.prev_node_x = 0;
+      node.prev_node_y = 0;
+    }
+  }
+  setGrid(localGrid);
+}

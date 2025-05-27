@@ -21,6 +21,7 @@ export default function Grid() {
   const [grid, setGrid] = useState(() => init());
   const [algorithm, setAlgorithm] = useState('breadth-first-search');
   const [mazeGenAlgorithm, setMazeGenAlgorithm] = useState('prims');
+  const [pathHasBeenVisualized, setPathHasBeenVisualized] = useState(false);
 
   function handleGridMouseDown() {
     setMouseDown(true);
@@ -34,8 +35,13 @@ export default function Grid() {
     <>
       <div className="header">
         <ClearAll grid={grid} setGrid={setGrid}></ClearAll>
-        <Clear grid={grid} setGrid={setGrid}></Clear>
-        <VisualizeButton algorithm={algorithm} grid={grid} setGrid={setGrid}></VisualizeButton>
+        <Clear grid={grid} setGrid={setGrid} setPathHasBeenVisualized={setPathHasBeenVisualized}></Clear>
+        <VisualizeButton
+          algorithm={algorithm}
+          grid={grid}
+          setGrid={setGrid}
+          setPathHasBeenVisualized={setPathHasBeenVisualized}
+        ></VisualizeButton>
         <AlgorithmDropdown setAlgorithm={setAlgorithm}></AlgorithmDropdown>
         <GenerateMazeButton algorithm={mazeGenAlgorithm} grid={grid} setGrid={setGrid}></GenerateMazeButton>
         <GenerateMazeDropdown setAlgorithm={setMazeGenAlgorithm}></GenerateMazeDropdown>
@@ -63,6 +69,8 @@ export default function Grid() {
                 draggingEndNode={draggingEndNode}
                 setDraggingEndNode={setDraggingEndNode}
                 prevClassName={ele.prev_className}
+                pathHasBeenVisualized={pathHasBeenVisualized}
+                algorithm={algorithm}
               ></Node>
             ))}
           </div>

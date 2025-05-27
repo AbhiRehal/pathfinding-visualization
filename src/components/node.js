@@ -1,3 +1,7 @@
+import { breadthFirstSearch } from '../algorithms/breadth-first-search';
+import { depthFirstSearch } from '../algorithms/depth-first-search';
+import { inBounds, generatePath, getGridInfo, getCompassDirections, clearPath } from '../utils/helpers';
+
 export function Node({
   className = 'node',
   visited = 'false',
@@ -13,7 +17,9 @@ export function Node({
   setDraggingStartNode,
   draggingEndNode,
   setDraggingEndNode,
-  prevClassName
+  prevClassName,
+  pathHasBeenVisualized,
+  algorithm
 }) {
   function handleMouseDown() {
     let localGrid = [...grid];
@@ -56,16 +62,38 @@ export function Node({
   function handleMouseEnter() {
     if (mouseIsDown && draggingStartNode) {
       let localGrid = [...grid];
-      localGrid[row][col].prev_ClassName = localGrid[row][col].className;
+      localGrid[row][col].prev_className = localGrid[row][col].className;
       localGrid[row][col].className = 'startNode';
+
+      if (pathHasBeenVisualized) {
+        clearPath(localGrid, setGrid);
+        if (algorithm == 'breadth-first-search') {
+          breadthFirstSearch(localGrid, setGrid, inBounds, generatePath, getGridInfo, getCompassDirections);
+        } else if (algorithm == 'depth-first-search') {
+          depthFirstSearch(localGrid, setGrid, inBounds, generatePath, getGridInfo, getCompassDirections);
+        }
+        return;
+      }
+
       setGrid(localGrid);
       return;
     }
 
     if (mouseIsDown && draggingEndNode) {
       let localGrid = [...grid];
-      localGrid[row][col].prev_ClassName = localGrid[row][col].className;
+      localGrid[row][col].prev_className = localGrid[row][col].className;
       localGrid[row][col].className = 'endNode';
+
+      if (pathHasBeenVisualized) {
+        clearPath(localGrid, setGrid);
+        if (algorithm == 'breadth-first-search') {
+          breadthFirstSearch(localGrid, setGrid, inBounds, generatePath, getGridInfo, getCompassDirections);
+        } else if (algorithm == 'depth-first-search') {
+          depthFirstSearch(localGrid, setGrid, inBounds, generatePath, getGridInfo, getCompassDirections);
+        }
+        return;
+      }
+
       setGrid(localGrid);
       return;
     }
@@ -87,7 +115,7 @@ export function Node({
   function handleMouseLeave() {
     if (draggingStartNode || draggingEndNode) {
       let localGrid = [...grid];
-      localGrid[row][col].className = localGrid[row][col].prev_ClassName;
+      localGrid[row][col].className = localGrid[row][col].prev_className;
       setGrid(localGrid);
     }
   }
