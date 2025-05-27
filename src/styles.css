@@ -77,16 +77,16 @@
   width: 21px;
   height: 21px;
   opacity: 80%;
-  transition: background-color 0.5s;
+  /* transition: background-color 0.5s; */
 }
 
 .path {
   background-color: #32a852;
-  border: 1px solid #fff;
+  border: 1px solid #32a852;
   width: 21px;
   height: 21px;
   opacity: 80%;
-  transition: background-color 2s;
+  /* transition: background-color 2s; */
 }
 
 .on-stack {

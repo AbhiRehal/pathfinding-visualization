@@ -35,8 +35,8 @@ export async function breadthFirstSearch(
     }
   }
 
-  setGrid([...localGrid]);
-  await new Promise(resolve => setTimeout(resolve, 1));
+  // setGrid([...localGrid]);
+  // await new Promise(resolve => setTimeout(resolve, 1));
 
   while (!end_found && stack.length > 0) {
     const current_node = stack.shift();
@@ -60,16 +60,16 @@ export async function breadthFirstSearch(
       }
     }
     current_node.className = 'visited';
-    setGrid([...localGrid]);
-    await new Promise(resolve => setTimeout(resolve, 1));
+    // setGrid([...localGrid]);
+    // await new Promise(resolve => setTimeout(resolve, 1));
   }
 
   const path = generatePath(localGrid, endNode);
   while (path.length > 0) {
     let node = path.pop();
     node.className = 'path';
-    setGrid([...localGrid]);
-    await new Promise(resolve => setTimeout(resolve, 25));
+    // setGrid([...localGrid]);
+    // await new Promise(resolve => setTimeout(resolve, 25));
   }
 
   setGrid(localGrid);
