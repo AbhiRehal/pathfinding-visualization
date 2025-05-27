@@ -87,7 +87,7 @@ export function Node({
   function handleMouseLeave() {
     if (draggingStartNode || draggingEndNode) {
       let localGrid = [...grid];
-      localGrid[row][col].className = localGrid[row][col].prev_className;
+      localGrid[row][col].className = localGrid[row][col].prev_ClassName;
       setGrid(localGrid);
     }
   }
