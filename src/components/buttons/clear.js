@@ -1,4 +1,4 @@
-import { clearPath } from '../utils/helpers.js';
+import { clearPath } from '../../utils/helpers.js';
 
 export function Clear({ grid, setGrid, setPathHasBeenVisualized }) {
   function handleClick() {

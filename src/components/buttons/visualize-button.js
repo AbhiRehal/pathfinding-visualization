@@ -1,8 +1,8 @@
-import { aStar } from '../algorithms/a-star.js';
-import { breadthFirstSearch } from '../algorithms/breadth-first-search';
-import { depthFirstSearch } from '../algorithms/depth-first-search';
-import { dijkstras } from '../algorithms/dijkstras';
-import { inBounds, generatePath, getGridInfo, getCompassDirections } from '../utils/helpers';
+import { aStar } from '../../algorithms/pathfinding/a-star.js';
+import { breadthFirstSearch } from '../../algorithms/pathfinding/breadth-first-search';
+import { depthFirstSearch } from '../../algorithms/pathfinding/depth-first-search';
+import { dijkstras } from '../../algorithms/pathfinding/dijkstras';
+import { inBounds, generatePath, getGridInfo, getCompassDirections } from '../../utils/helpers';
 
 export function VisualizeButton({ algorithm, grid, setGrid, setPathHasBeenVisualized }) {
   async function handleClick() {

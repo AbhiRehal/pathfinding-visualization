@@ -2,17 +2,13 @@ import { useState } from 'react';
 import { Node } from './components/node.js';
 import { DebugButton } from './components/debug.js';
 import { Checkbox } from './components/checkbox.js';
-import { BFS } from './components/breadth-first-search.js';
-import { DFS } from './components/depth-first-search.js';
-import { ClearAll } from './components/clear-all-button.js';
-import { Clear } from './components/clear.js';
-import { PrimsMazeGenButton } from './components/prims-maze-gen-button.js';
+import { ClearAll } from './components/buttons/clear-all-button.js';
+import { Clear } from './components/buttons/clear.js';
 import { init } from './utils/init.js';
-import { Dijkstras } from './components/dijkstras-button.js';
-import { AlgorithmDropdown } from './components/algorithm-dropdown.js';
-import { VisualizeButton } from './components/visualize-button.js';
-import { GenerateMazeButton } from './components/generate-maze-button.js';
-import { GenerateMazeDropdown } from './components/generate-maze-dropdown.js';
+import { AlgorithmDropdown } from './components/dropdowns/algorithm-dropdown.js';
+import { VisualizeButton } from './components/buttons/visualize-button.js';
+import { GenerateMazeButton } from './components/buttons/generate-maze-button.js';
+import { GenerateMazeDropdown } from './components/dropdowns/generate-maze-dropdown.js';
 
 export default function Grid() {
   const [mouseIsDown, setMouseDown] = useState(false);

@@ -8,13 +8,6 @@
   gap: 5px;
 }
 
-.pmg {
-  background-color: #b88e72;
-  border: 1px solid #000;
-  height: 50px;
-  width: 150px;
-}
-
 .visualize {
   background-color: #fff;
   border: 1px solid #000;
@@ -50,12 +43,12 @@
   height: 21px;
 }
 
-.node:hover {
-  background-color: #cdcdcd;
-  border: 1px solid #000;
-  width: 21px;
-  height: 21px;
-}
+/* .node:hover { */
+/*   background-color: #cdcdcd; */
+/*   border: 1px solid #000; */
+/*   width: 21px; */
+/*   height: 21px; */
+/* } */
 
 .wall {
   background-color: black;

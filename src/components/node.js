@@ -1,5 +1,5 @@
-import { breadthFirstSearch } from '../algorithms/breadth-first-search';
-import { depthFirstSearch } from '../algorithms/depth-first-search';
+import { breadthFirstSearch } from '../algorithms/pathfinding/breadth-first-search';
+import { depthFirstSearch } from '../algorithms/pathfinding/depth-first-search';
 import { inBounds, generatePath, getGridInfo, getCompassDirections, clearPath } from '../utils/helpers';
 
 export function Node({

@@ -1,5 +1,5 @@
-import { primsMazeGeneration } from '../algorithms/maze-gen/prims';
-import { inBounds, getRandomInt, getGridInfo, getCompassDirections } from '../utils/helpers';
+import { primsMazeGeneration } from '../../algorithms/maze-gen/prims';
+import { inBounds, getRandomInt, getGridInfo, getCompassDirections } from '../../utils/helpers';
 
 export function GenerateMazeButton({ algorithm, grid, setGrid }) {
   async function handleClick() {
