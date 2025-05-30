@@ -22,6 +22,7 @@ export function Node({
   algorithm
 }) {
   function handleMouseDown() {
+    console.log(`mouseDown from row: ${row} col: ${col} className: ${className} at timestamp: ${Date.now()}`);
     let localGrid = [...grid];
 
     if (className == 'startNode') {
@@ -44,6 +45,7 @@ export function Node({
   }
 
   function handleMouseUp() {
+    console.log(`mouseUp from row: ${row} col: ${col} className: ${className} at timestamp: ${Date.now()}`);
     let localGrid = [...grid];
 
     if (draggingStartNode) {
@@ -60,6 +62,9 @@ export function Node({
   }
 
   function handleMouseEnter() {
+    console.log(
+      `mouseEnter from row: ${row} col: ${col} className: ${className} at timestamp: ${Date.now()}`
+    );
     if (mouseIsDown && draggingStartNode) {
       let localGrid = [...grid];
       localGrid[row][col].prev_className = localGrid[row][col].className;
@@ -113,6 +118,9 @@ export function Node({
   }
 
   function handleMouseLeave() {
+    console.log(
+      `mouseLeave from row: ${row} col: ${col} className: ${className} at timestamp: ${Date.now()}`
+    );
     if (draggingStartNode || draggingEndNode) {
       let localGrid = [...grid];
       localGrid[row][col].className = localGrid[row][col].prev_className;

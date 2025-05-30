@@ -43,18 +43,24 @@
   height: 21px;
 }
 
-/* .node:hover { */
-/*   background-color: #cdcdcd; */
-/*   border: 1px solid #000; */
-/*   width: 21px; */
-/*   height: 21px; */
-/* } */
-
 .wall {
   background-color: black;
   border: 1px solid #000;
   width: 21px;
   height: 21px;
+  animation: fade_in 0.3s;
+}
+
+@keyframes fade_in {
+  0% {
+    opacity: 0.3;
+  }
+  50% {
+    opacity: 0.6;
+  }
+  100% {
+    opacity: 1;
+  }
 }
 
 .frontier {
