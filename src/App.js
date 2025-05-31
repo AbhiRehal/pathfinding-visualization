@@ -18,6 +18,7 @@ export default function Grid() {
   const [algorithm, setAlgorithm] = useState('breadth-first-search');
   const [mazeGenAlgorithm, setMazeGenAlgorithm] = useState('prims');
   const [pathHasBeenVisualized, setPathHasBeenVisualized] = useState(false);
+  const [moveNodeRandomly, setMoveNodeRandomly] = useState(true);
 
   function handleGridMouseDown() {
     setMouseDown(true);
@@ -67,6 +68,8 @@ export default function Grid() {
                 prevClassName={ele.prev_className}
                 pathHasBeenVisualized={pathHasBeenVisualized}
                 algorithm={algorithm}
+                moveNodeRandomly={moveNodeRandomly}
+                setMoveNodeRandomly={setMoveNodeRandomly}
               ></Node>
             ))}
           </div>

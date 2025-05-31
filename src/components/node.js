@@ -1,6 +1,13 @@
 import { breadthFirstSearch } from '../algorithms/pathfinding/breadth-first-search';
 import { depthFirstSearch } from '../algorithms/pathfinding/depth-first-search';
-import { inBounds, generatePath, getGridInfo, getCompassDirections, clearPath } from '../utils/helpers';
+import {
+  inBounds,
+  getRandomInt,
+  generatePath,
+  getGridInfo,
+  getCompassDirections,
+  clearPath
+} from '../utils/helpers';
 
 export function Node({
   className = 'node',
@@ -19,12 +26,15 @@ export function Node({
   setDraggingEndNode,
   prevClassName,
   pathHasBeenVisualized,
-  algorithm
+  algorithm,
+  moveNodeRandomly,
+  setMoveNodeRandomly
 }) {
   function handleMouseDown() {
     console.log(`mouseDown from row: ${row} col: ${col} className: ${className} at timestamp: ${Date.now()}`);
     let localGrid = [...grid];
 
+    // set booleans to true if initial click is on start/endNode
     if (className == 'startNode') {
       setDraggingStartNode(true);
       return;
@@ -35,6 +45,7 @@ export function Node({
       return;
     }
 
+    // handles initial click one time
     if (className != 'wall') {
       localGrid[row][col].className = 'wall';
     } else {
@@ -48,16 +59,55 @@ export function Node({
     console.log(`mouseUp from row: ${row} col: ${col} className: ${className} at timestamp: ${Date.now()}`);
     let localGrid = [...grid];
 
+    // if you you were dragging the start/endNode you set the boolean back to false
+    // moveNodeRandomly == true from App.js as if you just click start/endNode it randomly place it somewhere
+    // and if pathHasBeenVisualized it will recalculate the path on click, else itll just move node randomly
     if (draggingStartNode) {
-      localGrid[row][col].className = 'startNode';
       setDraggingStartNode(false);
+      if (moveNodeRandomly) {
+        const [x_dir, y_dir, startNode, endNode] = getGridInfo(localGrid);
+        let rand = {};
+        do {
+          rand = {
+            x: getRandomInt(1, x_dir),
+            y: getRandomInt(1, y_dir)
+          };
+        } while (localGrid[rand.y][rand.x].className == 'endNode');
+        localGrid[rand.y][rand.x].prev_className = localGrid[rand.y][rand.x].className;
+        localGrid[rand.y][rand.x].className = 'startNode';
+        localGrid[startNode.y][startNode.x].className = localGrid[startNode.y][startNode.x].prev_className;
+      }
     }
 
     if (draggingEndNode) {
-      localGrid[row][col].className = 'endNode';
       setDraggingEndNode(false);
+      if (moveNodeRandomly) {
+        const [x_dir, y_dir, startNode, endNode] = getGridInfo(localGrid);
+        let rand = {};
+        do {
+          rand = {
+            x: getRandomInt(1, x_dir),
+            y: getRandomInt(1, y_dir)
+          };
+        } while (localGrid[rand.y][rand.x].className == 'startNode');
+        localGrid[rand.y][rand.x].prev_className = localGrid[rand.y][rand.x].className;
+        localGrid[rand.y][rand.x].className = 'endNode';
+        localGrid[endNode.y][endNode.x].className = localGrid[endNode.y][endNode.x].prev_className;
+      }
     }
 
+    // visualizes the path if pathHasBeenVisualized - outside prior ifs makes it do it everytime even if
+    // youre just adding walls which can
+    if (pathHasBeenVisualized) {
+      clearPath(localGrid, setGrid);
+      if (algorithm == 'breadth-first-search') {
+        breadthFirstSearch(localGrid, setGrid, inBounds, generatePath, getGridInfo, getCompassDirections);
+      } else if (algorithm == 'depth-first-search') {
+        depthFirstSearch(localGrid, setGrid, inBounds, generatePath, getGridInfo, getCompassDirections);
+      }
+    }
+
+    setMoveNodeRandomly(true);
     setGrid(localGrid);
   }
 
@@ -65,7 +115,12 @@ export function Node({
     console.log(
       `mouseEnter from row: ${row} col: ${col} className: ${className} at timestamp: ${Date.now()}`
     );
+    // if we are dragging the start/endNode we need to setMoveNodeRandomly(false) to make sure it doesnt move
+    // those respective nodes to a random position. Other than that, it preserves current state by setting
+    // prev_className and revisualises path if pathHasBeenVisualized. Guarded clasuses to prevent recalling
+    // setGrid redundantly as pathdinging algorithms already do that
     if (mouseIsDown && draggingStartNode) {
+      setMoveNodeRandomly(false);
       let localGrid = [...grid];
       localGrid[row][col].prev_className = localGrid[row][col].className;
       localGrid[row][col].className = 'startNode';
@@ -85,6 +140,7 @@ export function Node({
     }
 
     if (mouseIsDown && draggingEndNode) {
+      setMoveNodeRandomly(false);
       let localGrid = [...grid];
       localGrid[row][col].prev_className = localGrid[row][col].className;
       localGrid[row][col].className = 'endNode';
@@ -103,6 +159,7 @@ export function Node({
       return;
     }
 
+    // if youre not dragging start/endNode just add/erase walls
     if (mouseIsDown) {
       let localGrid = [...grid];
       if (className == 'startNode' || className == 'endNode') {
@@ -121,6 +178,7 @@ export function Node({
     console.log(
       `mouseLeave from row: ${row} col: ${col} className: ${className} at timestamp: ${Date.now()}`
     );
+    // sets node back to what it was before the start/endNode was dragged into its spot
     if (draggingStartNode || draggingEndNode) {
       let localGrid = [...grid];
       localGrid[row][col].className = localGrid[row][col].prev_className;
