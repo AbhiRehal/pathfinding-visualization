@@ -9,6 +9,7 @@ import { AlgorithmDropdown } from './components/dropdowns/algorithm-dropdown.js'
 import { VisualizeButton } from './components/buttons/visualize-button.js';
 import { GenerateMazeButton } from './components/buttons/generate-maze-button.js';
 import { GenerateMazeDropdown } from './components/dropdowns/generate-maze-dropdown.js';
+import { RandomUseButton } from './components/buttons/random-use-button.js';
 
 export default function Grid() {
   const [mouseIsDown, setMouseDown] = useState(false);
@@ -33,6 +34,7 @@ export default function Grid() {
       <div className="header">
         <ClearAll grid={grid} setGrid={setGrid}></ClearAll>
         <Clear grid={grid} setGrid={setGrid} setPathHasBeenVisualized={setPathHasBeenVisualized}></Clear>
+        <RandomUseButton grid={grid} setGrid={setGrid}></RandomUseButton>
         <VisualizeButton
           algorithm={algorithm}
           grid={grid}
