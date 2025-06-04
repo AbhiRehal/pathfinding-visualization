@@ -25,7 +25,7 @@ export function generatePath(grid, endNode) {
     }
     path.push(path_node);
     path_node = localGrid[path_node.prev_node_y][path_node.prev_node_x];
-  } while (path_node.className != 'startNode');
+  } while (path_node.className != 'startNode' && path_node.className != 'startNode idle');
 
   return path;
 }
@@ -43,11 +43,11 @@ export function getGridInfo(grid) {
   };
   for (let row = 0; row < grid.length; row++) {
     for (let col = 0; col < grid[row].length; col++) {
-      if (grid[row][col].className == 'startNode') {
+      if (grid[row][col].className == 'startNode' || grid[row][col].className == 'startNode idle') {
         startNode.x = col;
         startNode.y = row;
       }
-      if (grid[row][col].className == 'endNode') {
+      if (grid[row][col].className == 'endNode' || grid[row][col].className == 'endNode idle') {
         endNode.x = col;
         endNode.y = row;
       }

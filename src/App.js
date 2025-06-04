@@ -1,4 +1,4 @@
-import { useState } from 'react';
+import { useEffect, useRef, useState } from 'react';
 import { Node } from './components/node.js';
 import { DebugButton } from './components/debug.js';
 import { Checkbox } from './components/checkbox.js';
@@ -10,6 +10,7 @@ import { VisualizeButton } from './components/buttons/visualize-button.js';
 import { GenerateMazeButton } from './components/buttons/generate-maze-button.js';
 import { GenerateMazeDropdown } from './components/dropdowns/generate-maze-dropdown.js';
 import { RandomUseButton } from './components/buttons/random-use-button.js';
+import { getGridInfo, getRandomInt } from './utils/helpers.js';
 
 export default function Grid() {
   const [mouseIsDown, setMouseDown] = useState(false);
@@ -20,6 +21,25 @@ export default function Grid() {
   const [mazeGenAlgorithm, setMazeGenAlgorithm] = useState('prims');
   const [pathHasBeenVisualized, setPathHasBeenVisualized] = useState(false);
   const [moveNodeRandomly, setMoveNodeRandomly] = useState(true);
+  const [needsStartNodeHint, setStartNodeHint] = useState(true);
+
+  let timestamp = useRef(Date.now());
+  useEffect(() => {
+    const interval = setInterval(() => {
+      if (Date.now() - timestamp.current < 5000) {
+        return;
+      }
+      if (needsStartNodeHint && !pathHasBeenVisualized) {
+        let localGrid = [...grid];
+        const [x_dir, y_dir, startNode, endNode] = getGridInfo(localGrid);
+        localGrid[startNode.y][startNode.x].className = 'startNode idle';
+        setStartNodeHint(false);
+        setGrid(localGrid);
+      }
+    }, 1000);
+
+    return () => clearInterval(interval);
+  }, [needsStartNodeHint, pathHasBeenVisualized]);
 
   function handleGridMouseDown() {
     setMouseDown(true);
@@ -72,6 +92,8 @@ export default function Grid() {
                 algorithm={algorithm}
                 moveNodeRandomly={moveNodeRandomly}
                 setMoveNodeRandomly={setMoveNodeRandomly}
+                timestamp={timestamp}
+                setStartNodeHint={setStartNodeHint}
               ></Node>
             ))}
           </div>

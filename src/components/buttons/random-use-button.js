@@ -4,7 +4,7 @@ export function RandomUseButton({ grid, setGrid }) {
   function handleClick() {
     const localGrid = [...grid];
     const [x, y, s, e] = getGridInfo(localGrid);
-    localGrid[s.y][s.x].className = 'startNodeIdle';
+    localGrid[s.y][s.x].className = 'startNode idle';
     setGrid(localGrid);
   }
   return (

@@ -28,19 +28,31 @@ export function Node({
   pathHasBeenVisualized,
   algorithm,
   moveNodeRandomly,
-  setMoveNodeRandomly
+  setMoveNodeRandomly,
+  timestamp,
+  setStartNodeHint
 }) {
   function handleMouseDown() {
     console.log(`mouseDown from row: ${row} col: ${col} className: ${className} at timestamp: ${Date.now()}`);
     let localGrid = [...grid];
 
-    // set booleans to true if initial click is on start/endNode
-    if (className == 'startNode') {
+    // set booleans to true if initial click is on start/endNode or on a blinking node due to idle animation
+    // also sets the node hint boolena to false because the users already clicked it
+    if (className == 'startNode' || className == 'startNode idle') {
+      timestamp.current = Date.now();
+      let localGrid = [...grid];
+      localGrid[row][col].className = 'startNode';
+      setGrid(localGrid);
+      setStartNodeHint(false);
       setDraggingStartNode(true);
       return;
     }
 
-    if (className == 'endNode') {
+    if (className == 'endNode' || className == 'endNode idle') {
+      timestamp.current = Date.now();
+      let localGrid = [...grid];
+      localGrid[row][col].className = 'endNode';
+      setGrid(localGrid);
       setDraggingEndNode(true);
       return;
     }
