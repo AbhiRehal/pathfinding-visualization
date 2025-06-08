@@ -20,6 +20,7 @@
   border: 1px solid #fff;
   width: 21px;
   height: 21px;
+  padding: 0;
 }
 
 .idle {
@@ -45,6 +46,7 @@
   border: 1px solid #fff;
   width: 21px;
   height: 21px;
+  padding: 0;
 }
 
 .blank {
@@ -52,6 +54,7 @@
   border: 1px solid #cdcdcd;
   width: 21px;
   height: 21px;
+  padding: 0;
 }
 
 .node {
@@ -59,6 +62,7 @@
   border: 1px solid #cdcdcd;
   width: 21px;
   height: 21px;
+  padding: 0;
 }
 
 .wall {
@@ -66,6 +70,7 @@
   border: 1px solid #000;
   width: 21px;
   height: 21px;
+  padding: 0;
   animation: fade_in 0.3s;
 }
 
@@ -98,6 +103,7 @@
   border: 1.5px solid red;
   width: 21px;
   height: 21px;
+  padding: 0;
 }
 
 .visited {
@@ -105,8 +111,7 @@
   border: 1px solid #fff;
   width: 21px;
   height: 21px;
-  opacity: 80%;
-  /* transition: background-color 0.5s; */
+  padding: 0;
 }
 
 .path {
@@ -114,8 +119,7 @@
   border: 1px solid #32a852;
   width: 21px;
   height: 21px;
-  opacity: 80%;
-  /* transition: background-color 2s; */
+  padding: 0;
 }
 
 .on-stack {
@@ -123,7 +127,7 @@
   border: 1px solid #fff;
   width: 21px;
   height: 21px;
-  opacity: 80%;
+  padding: 0;
 }
 
 .debug-button {
