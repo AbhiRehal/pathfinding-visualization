@@ -20,7 +20,7 @@ export function init() {
         prev_node_x: 0,
         prev_node_y: 0,
         weight: 1,
-        distance: 1_000_000,
+        distance: 999,
         prev_className: 'blank'
       };
       row.push(node);
@@ -33,6 +33,7 @@ export function init() {
     y: getRandomInt(1, y_dir - 1)
   };
   grid[starterNode.y][starterNode.x].className = 'startNode';
+  grid[starterNode.y][starterNode.x].distance = 0;
 
   const endNode = {
     x: getRandomInt(1, x_dir - 1),

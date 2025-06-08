@@ -11,6 +11,11 @@ export function ClearAll({ grid, setGrid }) {
           node.prev_node_x = 0;
           node.prev_node_y = 0;
         }
+        if (node.className == 'startNode') {
+          node.distance = 0;
+        } else {
+          node.distance = 999;
+        }
       }
     }
     setGrid(localGrid);

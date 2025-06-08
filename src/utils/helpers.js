@@ -35,21 +35,25 @@ export function getGridInfo(grid) {
   const y_dir = grid.length;
   const startNode = {
     x: 0,
-    y: 0
+    y: 0,
+    distance: 0
   };
   const endNode = {
     x: 0,
-    y: 0
+    y: 0,
+    distance: 0
   };
   for (let row = 0; row < grid.length; row++) {
     for (let col = 0; col < grid[row].length; col++) {
       if (grid[row][col].className == 'startNode' || grid[row][col].className == 'startNode idle') {
         startNode.x = col;
         startNode.y = row;
+        startNode.distance = grid[row][col].distance;
       }
       if (grid[row][col].className == 'endNode' || grid[row][col].className == 'endNode idle') {
         endNode.x = col;
         endNode.y = row;
+        endNode.distance = grid[row][col].distance;
       }
     }
   }
@@ -98,8 +102,30 @@ export function clearPath(grid, setGrid) {
       if ((node.className == 'startNode' || node.className == 'endNode') && !node.prev_className == 'wall') {
         node.prev_className = 'node';
       }
+      if (node.className == 'startNode') {
+        node.distance = 0;
+      } else {
+        node.distance = 999;
+      }
       node.prev_node_x = 0;
       node.prev_node_y = 0;
+    }
+  }
+  setGrid(localGrid);
+}
+
+export function resetWeights(grid, setGrid) {
+  const localGrid = [...grid];
+  const x_dir = localGrid[0].length;
+  const y_dir = localGrid.length;
+  for (let row = 0; row < y_dir; row++) {
+    for (let col = 0; col < x_dir; col++) {
+      const node = localGrid[row][col];
+      if (node.className == 'startNode') {
+        node.distance = 0;
+        continue;
+      }
+      node.distance = 999;
     }
   }
   setGrid(localGrid);

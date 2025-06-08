@@ -1,5 +1,6 @@
 import { breadthFirstSearch } from '../algorithms/pathfinding/breadth-first-search';
 import { depthFirstSearch } from '../algorithms/pathfinding/depth-first-search';
+import { dijkstras } from '../algorithms/pathfinding/dijkstras';
 import {
   inBounds,
   getRandomInt,
@@ -30,7 +31,9 @@ export function Node({
   moveNodeRandomly,
   setMoveNodeRandomly,
   timestamp,
-  setStartNodeHint
+  setStartNodeHint,
+  distance,
+  weight
 }) {
   function handleMouseDown() {
     console.log(`mouseDown from row: ${row} col: ${col} className: ${className} at timestamp: ${Date.now()}`);
@@ -42,6 +45,7 @@ export function Node({
       timestamp.current = Date.now();
       let localGrid = [...grid];
       localGrid[row][col].className = 'startNode';
+      localGrid[row][col].distance = 999;
       setGrid(localGrid);
       setStartNodeHint(false);
       setDraggingStartNode(true);
@@ -87,6 +91,7 @@ export function Node({
         } while (localGrid[rand.y][rand.x].className == 'endNode');
         localGrid[rand.y][rand.x].prev_className = localGrid[rand.y][rand.x].className;
         localGrid[rand.y][rand.x].className = 'startNode';
+        localGrid[rand.y][rand.x].distance = 0;
         localGrid[startNode.y][startNode.x].className = localGrid[startNode.y][startNode.x].prev_className;
       }
     }
@@ -116,6 +121,8 @@ export function Node({
         breadthFirstSearch(localGrid, setGrid, inBounds, generatePath, getGridInfo, getCompassDirections);
       } else if (algorithm == 'depth-first-search') {
         depthFirstSearch(localGrid, setGrid, inBounds, generatePath, getGridInfo, getCompassDirections);
+      } else if (algorithm == 'dijkstras') {
+        dijkstras(localGrid, setGrid, inBounds, generatePath, getGridInfo, getCompassDirections);
       }
     }
 
@@ -143,6 +150,8 @@ export function Node({
           breadthFirstSearch(localGrid, setGrid, inBounds, generatePath, getGridInfo, getCompassDirections);
         } else if (algorithm == 'depth-first-search') {
           depthFirstSearch(localGrid, setGrid, inBounds, generatePath, getGridInfo, getCompassDirections);
+        } else if (algorithm == 'dijkstras') {
+          dijkstras(localGrid, setGrid, inBounds, generatePath, getGridInfo, getCompassDirections);
         }
         return;
       }
@@ -163,6 +172,8 @@ export function Node({
           breadthFirstSearch(localGrid, setGrid, inBounds, generatePath, getGridInfo, getCompassDirections);
         } else if (algorithm == 'depth-first-search') {
           depthFirstSearch(localGrid, setGrid, inBounds, generatePath, getGridInfo, getCompassDirections);
+        } else if (algorithm == 'dijkstras') {
+          dijkstras(localGrid, setGrid, inBounds, generatePath, getGridInfo, getCompassDirections);
         }
         return;
       }
