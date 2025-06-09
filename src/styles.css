@@ -2,6 +2,10 @@
   margin: 5vmin;
 }
 
+.grid-row {
+  height: 21px;
+}
+
 .header {
   display: flex;
   justify-content: space-between;
@@ -160,7 +164,7 @@ option {
   font-size: 0.9rem;
   padding: 2px 5px;
 }
+
 * {
   box-sizing: border-box;
-  height: 21px;
 }

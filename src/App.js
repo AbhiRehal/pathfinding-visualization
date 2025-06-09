@@ -67,7 +67,7 @@ export default function Grid() {
       </div>
       <div className="grid" onMouseDown={handleGridMouseDown} onMouseUp={handleGridMouseUp}>
         {grid.map((row, rowIndex) => (
-          <div key={rowIndex}>
+          <div key={rowIndex} className="grid-row">
             {row.map((ele, colIndex) => (
               <Node
                 key={ele.index}
