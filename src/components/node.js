@@ -10,6 +10,8 @@ import {
   clearPath
 } from '../utils/helpers';
 
+const debug = false;
+
 export function Node({
   className = 'node',
   visited = 'false',
@@ -36,7 +38,11 @@ export function Node({
   weight
 }) {
   function handleMouseDown() {
-    console.log(`mouseDown from row: ${row} col: ${col} className: ${className} at timestamp: ${Date.now()}`);
+    if (debug) {
+      console.log(
+        `mouseDown from row: ${row} col: ${col} className: ${className} at timestamp: ${Date.now()}`
+      );
+    }
     let localGrid = [...grid];
 
     // set booleans to true if initial click is on start/endNode or on a blinking node due to idle animation
@@ -45,7 +51,7 @@ export function Node({
       timestamp.current = Date.now();
       let localGrid = [...grid];
       localGrid[row][col].className = 'startNode';
-      localGrid[row][col].distance = 999;
+      localGrid[row][col].distance = 99;
       setGrid(localGrid);
       setStartNodeHint(false);
       setDraggingStartNode(true);
@@ -72,7 +78,9 @@ export function Node({
   }
 
   function handleMouseUp() {
-    console.log(`mouseUp from row: ${row} col: ${col} className: ${className} at timestamp: ${Date.now()}`);
+    if (debug) {
+      console.log(`mouseUp from row: ${row} col: ${col} className: ${className} at timestamp: ${Date.now()}`);
+    }
     let localGrid = [...grid];
 
     // if you you were dragging the start/endNode you set the boolean back to false
@@ -93,6 +101,8 @@ export function Node({
         localGrid[rand.y][rand.x].className = 'startNode';
         localGrid[rand.y][rand.x].distance = 0;
         localGrid[startNode.y][startNode.x].className = localGrid[startNode.y][startNode.x].prev_className;
+      } else {
+        localGrid[row][col].distance = 0;
       }
     }
 
@@ -131,9 +141,11 @@ export function Node({
   }
 
   function handleMouseEnter() {
-    console.log(
-      `mouseEnter from row: ${row} col: ${col} className: ${className} at timestamp: ${Date.now()}`
-    );
+    if (debug) {
+      console.log(
+        `mouseEnter from row: ${row} col: ${col} className: ${className} at timestamp: ${Date.now()}`
+      );
+    }
     // if we are dragging the start/endNode we need to setMoveNodeRandomly(false) to make sure it doesnt move
     // those respective nodes to a random position. Other than that, it preserves current state by setting
     // prev_className and revisualises path if pathHasBeenVisualized. Guarded clasuses to prevent recalling
@@ -198,9 +210,11 @@ export function Node({
   }
 
   function handleMouseLeave() {
-    console.log(
-      `mouseLeave from row: ${row} col: ${col} className: ${className} at timestamp: ${Date.now()}`
-    );
+    if (debug) {
+      console.log(
+        `mouseLeave from row: ${row} col: ${col} className: ${className} at timestamp: ${Date.now()}`
+      );
+    }
     // sets node back to what it was before the start/endNode was dragged into its spot
     if (draggingStartNode || draggingEndNode) {
       let localGrid = [...grid];

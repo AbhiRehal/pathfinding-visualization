@@ -105,7 +105,7 @@ export function clearPath(grid, setGrid) {
       if (node.className == 'startNode') {
         node.distance = 0;
       } else {
-        node.distance = 999;
+        node.distance = 99;
       }
       node.prev_node_x = 0;
       node.prev_node_y = 0;
@@ -125,7 +125,7 @@ export function resetWeights(grid, setGrid) {
         node.distance = 0;
         continue;
       }
-      node.distance = 999;
+      node.distance = 99;
     }
   }
   setGrid(localGrid);
