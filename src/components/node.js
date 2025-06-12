@@ -128,11 +128,35 @@ export function Node({
     if (pathHasBeenVisualized) {
       clearPath(localGrid, setGrid);
       if (algorithm == 'breadth-first-search') {
-        breadthFirstSearch(localGrid, setGrid, inBounds, generatePath, getGridInfo, getCompassDirections);
+        breadthFirstSearch(
+          localGrid,
+          setGrid,
+          inBounds,
+          generatePath,
+          getGridInfo,
+          getCompassDirections,
+          pathHasBeenVisualized
+        );
       } else if (algorithm == 'depth-first-search') {
-        depthFirstSearch(localGrid, setGrid, inBounds, generatePath, getGridInfo, getCompassDirections);
+        depthFirstSearch(
+          localGrid,
+          setGrid,
+          inBounds,
+          generatePath,
+          getGridInfo,
+          getCompassDirections,
+          pathHasBeenVisualized
+        );
       } else if (algorithm == 'dijkstras') {
-        dijkstras(localGrid, setGrid, inBounds, generatePath, getGridInfo, getCompassDirections);
+        dijkstras(
+          localGrid,
+          setGrid,
+          inBounds,
+          generatePath,
+          getGridInfo,
+          getCompassDirections,
+          pathHasBeenVisualized
+        );
       }
     }
 
@@ -159,11 +183,35 @@ export function Node({
       if (pathHasBeenVisualized) {
         clearPath(localGrid, setGrid);
         if (algorithm == 'breadth-first-search') {
-          breadthFirstSearch(localGrid, setGrid, inBounds, generatePath, getGridInfo, getCompassDirections);
+          breadthFirstSearch(
+            localGrid,
+            setGrid,
+            inBounds,
+            generatePath,
+            getGridInfo,
+            getCompassDirections,
+            pathHasBeenVisualized
+          );
         } else if (algorithm == 'depth-first-search') {
-          depthFirstSearch(localGrid, setGrid, inBounds, generatePath, getGridInfo, getCompassDirections);
+          depthFirstSearch(
+            localGrid,
+            setGrid,
+            inBounds,
+            generatePath,
+            getGridInfo,
+            getCompassDirections,
+            pathHasBeenVisualized
+          );
         } else if (algorithm == 'dijkstras') {
-          dijkstras(localGrid, setGrid, inBounds, generatePath, getGridInfo, getCompassDirections);
+          dijkstras(
+            localGrid,
+            setGrid,
+            inBounds,
+            generatePath,
+            getGridInfo,
+            getCompassDirections,
+            pathHasBeenVisualized
+          );
         }
         return;
       }
@@ -181,11 +229,35 @@ export function Node({
       if (pathHasBeenVisualized) {
         clearPath(localGrid, setGrid);
         if (algorithm == 'breadth-first-search') {
-          breadthFirstSearch(localGrid, setGrid, inBounds, generatePath, getGridInfo, getCompassDirections);
+          breadthFirstSearch(
+            localGrid,
+            setGrid,
+            inBounds,
+            generatePath,
+            getGridInfo,
+            getCompassDirections,
+            pathHasBeenVisualized
+          );
         } else if (algorithm == 'depth-first-search') {
-          depthFirstSearch(localGrid, setGrid, inBounds, generatePath, getGridInfo, getCompassDirections);
+          depthFirstSearch(
+            localGrid,
+            setGrid,
+            inBounds,
+            generatePath,
+            getGridInfo,
+            getCompassDirections,
+            pathHasBeenVisualized
+          );
         } else if (algorithm == 'dijkstras') {
-          dijkstras(localGrid, setGrid, inBounds, generatePath, getGridInfo, getCompassDirections);
+          dijkstras(
+            localGrid,
+            setGrid,
+            inBounds,
+            generatePath,
+            getGridInfo,
+            getCompassDirections,
+            pathHasBeenVisualized
+          );
         }
         return;
       }

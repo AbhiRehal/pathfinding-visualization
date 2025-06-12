@@ -52,13 +52,18 @@ export default function Grid() {
   return (
     <>
       <div className="header">
-        <ClearAll grid={grid} setGrid={setGrid}></ClearAll>
+        <ClearAll
+          grid={grid}
+          setGrid={setGrid}
+          setPathHasBeenVisualized={setPathHasBeenVisualized}
+        ></ClearAll>
         <Clear grid={grid} setGrid={setGrid} setPathHasBeenVisualized={setPathHasBeenVisualized}></Clear>
         <RandomUseButton grid={grid} setGrid={setGrid}></RandomUseButton>
         <VisualizeButton
           algorithm={algorithm}
           grid={grid}
           setGrid={setGrid}
+          pathHasBeenVisualized={pathHasBeenVisualized}
           setPathHasBeenVisualized={setPathHasBeenVisualized}
         ></VisualizeButton>
         <AlgorithmDropdown setAlgorithm={setAlgorithm}></AlgorithmDropdown>

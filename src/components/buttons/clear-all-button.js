@@ -1,4 +1,4 @@
-export function ClearAll({ grid, setGrid }) {
+export function ClearAll({ grid, setGrid, setPathHasBeenVisualized }) {
   function handleClick() {
     const x_dir = grid[0].length;
     const y_dir = grid.length;
@@ -18,6 +18,7 @@ export function ClearAll({ grid, setGrid }) {
         }
       }
     }
+    setPathHasBeenVisualized(false);
     setGrid(localGrid);
   }
 

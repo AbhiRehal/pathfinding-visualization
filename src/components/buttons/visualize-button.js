@@ -4,16 +4,46 @@ import { depthFirstSearch } from '../../algorithms/pathfinding/depth-first-searc
 import { dijkstras } from '../../algorithms/pathfinding/dijkstras';
 import { inBounds, generatePath, getGridInfo, getCompassDirections } from '../../utils/helpers';
 
-export function VisualizeButton({ algorithm, grid, setGrid, setPathHasBeenVisualized }) {
+export function VisualizeButton({
+  algorithm,
+  grid,
+  setGrid,
+  pathHasBeenVisualized,
+  setPathHasBeenVisualized
+}) {
   async function handleClick() {
     if (algorithm == 'a-star') {
-      aStar(grid, setGrid, inBounds, generatePath, getGridInfo, getCompassDirections);
+      aStar(grid, setGrid, inBounds, generatePath, getGridInfo, getCompassDirections, pathHasBeenVisualized);
     } else if (algorithm == 'breadth-first-search') {
-      breadthFirstSearch(grid, setGrid, inBounds, generatePath, getGridInfo, getCompassDirections);
+      breadthFirstSearch(
+        grid,
+        setGrid,
+        inBounds,
+        generatePath,
+        getGridInfo,
+        getCompassDirections,
+        pathHasBeenVisualized
+      );
     } else if (algorithm == 'depth-first-search') {
-      depthFirstSearch(grid, setGrid, inBounds, generatePath, getGridInfo, getCompassDirections);
+      depthFirstSearch(
+        grid,
+        setGrid,
+        inBounds,
+        generatePath,
+        getGridInfo,
+        getCompassDirections,
+        pathHasBeenVisualized
+      );
     } else if (algorithm == 'dijkstras') {
-      dijkstras(grid, setGrid, inBounds, generatePath, getGridInfo, getCompassDirections);
+      dijkstras(
+        grid,
+        setGrid,
+        inBounds,
+        generatePath,
+        getGridInfo,
+        getCompassDirections,
+        pathHasBeenVisualized
+      );
     }
     setPathHasBeenVisualized(true);
   }

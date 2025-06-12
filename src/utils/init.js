@@ -19,8 +19,8 @@ export function init() {
         visited: false,
         prev_node_x: 0,
         prev_node_y: 0,
-        weight: 1,
-        distance: 99,
+        weight: getRandomInt(1, 10),
+        distance: 1_000_000,
         prev_className: 'blank'
       };
       row.push(node);

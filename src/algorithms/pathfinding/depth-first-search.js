@@ -4,7 +4,8 @@ export async function depthFirstSearch(
   inBounds,
   generatePath,
   getGridInfo,
-  getCompassDirections
+  getCompassDirections,
+  pathHasBeenVisualized
 ) {
   const [x_dir, y_dir, startNode, endNode] = getGridInfo(grid);
   const cardinal_directions = getCompassDirections();
@@ -30,12 +31,14 @@ export async function depthFirstSearch(
       stack.push(neighbour_node);
       neighbour_node.prev_node_x = startNode.x;
       neighbour_node.prev_node_y = startNode.y;
-      neighbour_node.className = 'on-stack';
+      neighbour_node.className = `${pathHasBeenVisualized ? 'on-stack' : 'on-stack-animated'}`;
     }
   }
 
-  // setGrid([...localGrid]);
-  // await new Promise(resolve => setTimeout(resolve, 1));
+  if (!pathHasBeenVisualized) {
+    setGrid([...localGrid]);
+    await new Promise(resolve => setTimeout(resolve, 1));
+  }
 
   while (!end_found && stack.length > 0) {
     const current_node = stack.pop();
@@ -52,25 +55,29 @@ export async function depthFirstSearch(
       }
       if (neighbour_node.className == 'node' || neighbour_node.className == 'blank') {
         stack.push(neighbour_node);
-        neighbour_node.className = 'on-stack';
+        neighbour_node.className = `${pathHasBeenVisualized ? 'on-stack' : 'on-stack-animated'}`;
         neighbour_node.prev_node_x = current_node.x;
         neighbour_node.prev_node_y = current_node.y;
-        current_node.className = 'visited';
+        current_node.className = `${pathHasBeenVisualized ? 'visited' : 'visited-animated'}`;
         continue;
       }
       // if the node being checked is surrounded by walls for example it will just set itself to visited
-      current_node.className = 'visited';
-      // setGrid([...localGrid]);
-      // await new Promise(resolve => setTimeout(resolve, 1));
+      current_node.className = `${pathHasBeenVisualized ? 'visited' : 'visited-animated'}`;
+    }
+    if (!pathHasBeenVisualized) {
+      setGrid([...localGrid]);
+      await new Promise(resolve => setTimeout(resolve, 1));
     }
   }
 
   const path = generatePath(localGrid, endNode);
   while (path.length > 0) {
     let node = path.pop();
-    node.className = 'path';
-    // setGrid([...localGrid]);
-    // await new Promise(resolve => setTimeout(resolve, 25));
+    node.className = `${pathHasBeenVisualized ? 'path' : 'path-animated'}`;
+    if (!pathHasBeenVisualized) {
+      setGrid([...localGrid]);
+      await new Promise(resolve => setTimeout(resolve, 25));
+    }
   }
 
   setGrid(localGrid);

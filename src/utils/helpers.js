@@ -105,7 +105,7 @@ export function clearPath(grid, setGrid) {
       if (node.className == 'startNode') {
         node.distance = 0;
       } else {
-        node.distance = 99;
+        node.distance = 1_000_000;
       }
       node.prev_node_x = 0;
       node.prev_node_y = 0;

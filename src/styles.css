@@ -110,12 +110,40 @@
   padding: 0;
 }
 
+@keyframes pulse_2 {
+  0% {
+    transform: scale(0.3);
+    background-color: #000042;
+    border-radius: 100%;
+  }
+  33% {
+    background-color: #1168d9;
+  }
+  66% {
+    transform: scale(1.2);
+    background-color: #00d99f;
+  }
+  100% {
+    transform: scale(1);
+    background-color: #00bdda;
+  }
+}
+
 .visited {
-  background-color: #fff000;
+  background-color: #00bdda;
   border: 1px solid #fff;
   width: 21px;
   height: 21px;
   padding: 0;
+}
+
+.visited-animated {
+  background-color: #00bdda;
+  border: 1px solid #fff;
+  width: 21px;
+  height: 21px;
+  padding: 0;
+  animation: pulse_2 0.6s;
 }
 
 .path {
@@ -126,12 +154,30 @@
   padding: 0;
 }
 
+.path-animated {
+  background-color: #32a852;
+  border: 1px solid #32a852;
+  width: 21px;
+  height: 21px;
+  padding: 0;
+  animation: pulse 0.6s;
+}
+
 .on-stack {
-  background-color: #fc6203;
+  background-color: rgba(178, 67, 255, 0.75);
   border: 1px solid #fff;
   width: 21px;
   height: 21px;
   padding: 0;
+}
+
+.on-stack-animated {
+  background-color: rgba(178, 67, 255, 0.75);
+  border: 1px solid #fff;
+  width: 21px;
+  height: 21px;
+  padding: 0;
+  animation: pulse_2 0.6s;
 }
 
 .debug-button {
