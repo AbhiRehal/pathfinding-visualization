@@ -96,13 +96,18 @@ export function clearPath(grid, setGrid) {
   for (let row = 0; row < y_dir; row++) {
     for (let col = 0; col < x_dir; col++) {
       const node = localGrid[row][col];
-      if (node.className != 'wall' && node.className != 'startNode' && node.className != 'endNode') {
+      if (
+        node.className != 'wall' &&
+        node.className != 'startNode' &&
+        node.className != 'endNode' &&
+        node.className != 'startNode idle'
+      ) {
         node.className = 'node';
       }
       if ((node.className == 'startNode' || node.className == 'endNode') && !node.prev_className == 'wall') {
         node.prev_className = 'node';
       }
-      if (node.className == 'startNode') {
+      if (node.className == 'startNode idle' || node.className == 'startNode') {
         node.distance = 0;
       } else {
         node.distance = 1_000_000;
