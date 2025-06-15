@@ -1,4 +1,7 @@
+import { clearAll } from '../../utils/helpers.js';
+
 export async function randomWalls(grid, setGrid, getRandomInt, getGridInfo) {
+  clearAll(grid, setGrid);
   const [x_dir, y_dir, startNode, endNode] = getGridInfo(grid);
   let localGrid = [...grid];
 

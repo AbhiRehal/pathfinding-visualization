@@ -1,3 +1,5 @@
+import { clearAll } from '../../utils/helpers.js';
+
 export async function primsMazeGeneration(
   grid,
   setGrid,
@@ -6,6 +8,7 @@ export async function primsMazeGeneration(
   getGridInfo,
   getCompassDirections
 ) {
+  clearAll(grid, setGrid);
   const [x_dir, y_dir, startNode, endNode] = getGridInfo(grid);
   const cardinal_directions = getCompassDirections('maze');
   let localGrid = [...grid];
