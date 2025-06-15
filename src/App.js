@@ -58,7 +58,7 @@ export default function Grid() {
           setPathHasBeenVisualized={setPathHasBeenVisualized}
         ></ClearAll>
         <Clear grid={grid} setGrid={setGrid} setPathHasBeenVisualized={setPathHasBeenVisualized}></Clear>
-        <RandomUseButton grid={grid} setGrid={setGrid}></RandomUseButton>
+        {/* <RandomUseButton grid={grid} setGrid={setGrid}></RandomUseButton> */}
         <VisualizeButton
           algorithm={algorithm}
           grid={grid}

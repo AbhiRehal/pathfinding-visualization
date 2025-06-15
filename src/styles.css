@@ -1,22 +1,82 @@
-.grid {
-  margin: 5vmin;
-}
-
-.grid-row {
-  height: 21px;
+* {
+  box-sizing: border-box;
+  margin: 0;
 }
 
 .header {
   display: flex;
   justify-content: space-between;
   gap: 5px;
+  background-color: #34495e;
+  padding: 0;
 }
 
 .visualize {
-  background-color: #fff;
-  border: 1px solid #000;
+  background-color: #34495e;
+  border: none;
   height: 50px;
-  width: 150px;
+  color: white;
+  font-family: sans-serif;
+  font-weight: 800;
+  font-size: 20px;
+}
+
+.visualize:hover {
+  background-color: #34495e;
+  border: none;
+  height: 50px;
+  color: cyan;
+  font-family: sans-serif;
+  font-weight: 800;
+  font-size: 20px;
+}
+
+.clear-button {
+  font-family: sans-serif;
+  font-weight: 700;
+  font-size: 16px;
+  background-color: transparent;
+  border: none;
+  color: white;
+}
+
+.bobble-text {
+  display: inline-block;
+  animation: pulse_3 1.2s infinite;
+}
+
+@keyframes pulse_3 {
+  0% {
+    transform: scale(0.7);
+    color: white;
+    text-shadow: 0 0 10px #fff;
+  }
+  50% {
+    transform: scale(1.3);
+    color: white;
+    text-shadow: 0 0 10px #fff;
+  }
+  100% {
+    transform: scale(1);
+    color: white;
+    text-shadow: 0 0 10px #fff;
+  }
+}
+
+.clear-button:hover {
+  font-family: sans-serif;
+  font-weight: 700;
+  background-color: transparent;
+  border: none;
+  color: cyan;
+}
+
+.grid {
+  margin: 5vmin;
+}
+
+.grid-row {
+  height: 21px;
 }
 
 .startNode {
@@ -201,16 +261,28 @@ label {
   padding-right: 10px;
 }
 
+select:hover {
+  font-size: 0.9rem;
+  padding: 2px 5px;
+  border: none;
+  background-color: transparent;
+  color: pink;
+}
+
+select::picker-icon {
+  color: red;
+  transition: 0.4s rotate;
+}
+
 select {
   font-size: 0.9rem;
   padding: 2px 5px;
+  border: none;
+  background-color: transparent;
+  color: white;
 }
 
 option {
   font-size: 0.9rem;
   padding: 2px 5px;
-}
-
-* {
-  box-sizing: border-box;
 }

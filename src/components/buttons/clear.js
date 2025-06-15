@@ -8,7 +8,7 @@ export function Clear({ grid, setGrid, setPathHasBeenVisualized }) {
 
   return (
     <button className="clear-button" onClick={handleClick}>
-      Clear Paths
+      <span className="bobble-text">Clear Paths</span>
     </button>
   );
 }
