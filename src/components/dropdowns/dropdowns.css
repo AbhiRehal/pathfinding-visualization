@@ -1,0 +1,16 @@
+.algorithm-dropdown,
+.generate-maze-dropdown {
+  background-color: transparent;
+  border: none;
+  border-radius: 5px;
+  color: #fff;
+  cursor: pointer;
+  font-family: sans-serif;
+  font-size: 14px;
+  font-weight: 700;
+}
+
+.algorithm-dropdown:hover,
+.generate-maze-dropdown:hover {
+  color: #1cbc9c;
+}

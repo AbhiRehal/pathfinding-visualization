@@ -1,3 +1,5 @@
+import './dropdowns.css';
+
 export function AlgorithmDropdown({ setAlgorithm }) {
   const handleEvent = event => {
     setAlgorithm(event.target.value);
@@ -5,7 +7,8 @@ export function AlgorithmDropdown({ setAlgorithm }) {
 
   return (
     <>
-      <select name="algorithms" id="algorithm-dropdown" onChange={handleEvent}>
+      <select className="algorithm-dropdown" name="algorithms" id="algorithm-dropdown" onChange={handleEvent}>
+        <option value="">Algorithms</option>
         <option value="a-star">A*</option>
         <option value="breadth-first-search">Breadth first serach</option>
         <option value="depth-first-search">Depth first search</option>

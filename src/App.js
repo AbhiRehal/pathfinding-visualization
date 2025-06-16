@@ -1,7 +1,5 @@
 import { useEffect, useRef, useState } from 'react';
 import { Node } from './components/node.js';
-import { DebugButton } from './components/debug.js';
-import { Checkbox } from './components/checkbox.js';
 import { ClearAll } from './components/buttons/clear-all-button.js';
 import { Clear } from './components/buttons/clear.js';
 import { init } from './utils/init.js';
@@ -9,15 +7,15 @@ import { AlgorithmDropdown } from './components/dropdowns/algorithm-dropdown.js'
 import { VisualizeButton } from './components/buttons/visualize-button.js';
 import { GenerateMazeButton } from './components/buttons/generate-maze-button.js';
 import { GenerateMazeDropdown } from './components/dropdowns/generate-maze-dropdown.js';
-import { RandomUseButton } from './components/buttons/random-use-button.js';
 import { getGridInfo, getRandomInt } from './utils/helpers.js';
+import { TitleButton } from './components/buttons/title-button.js';
 
 export default function Grid() {
   const [mouseIsDown, setMouseDown] = useState(false);
   const [draggingStartNode, setDraggingStartNode] = useState(false);
   const [draggingEndNode, setDraggingEndNode] = useState(false);
   const [grid, setGrid] = useState(() => init());
-  const [algorithm, setAlgorithm] = useState('breadth-first-search');
+  const [algorithm, setAlgorithm] = useState('');
   const [mazeGenAlgorithm, setMazeGenAlgorithm] = useState('prims');
   const [pathHasBeenVisualized, setPathHasBeenVisualized] = useState(false);
   const [moveNodeRandomly, setMoveNodeRandomly] = useState(true);
@@ -52,13 +50,9 @@ export default function Grid() {
   return (
     <>
       <div className="header">
-        <ClearAll
-          grid={grid}
-          setGrid={setGrid}
-          setPathHasBeenVisualized={setPathHasBeenVisualized}
-        ></ClearAll>
-        <Clear grid={grid} setGrid={setGrid} setPathHasBeenVisualized={setPathHasBeenVisualized}></Clear>
-        <RandomUseButton grid={grid} setGrid={setGrid}></RandomUseButton>
+        <TitleButton></TitleButton>
+        <GenerateMazeButton algorithm={mazeGenAlgorithm} grid={grid} setGrid={setGrid}></GenerateMazeButton>
+        <GenerateMazeDropdown setAlgorithm={setMazeGenAlgorithm}></GenerateMazeDropdown>
         <VisualizeButton
           algorithm={algorithm}
           grid={grid}
@@ -67,8 +61,12 @@ export default function Grid() {
           setPathHasBeenVisualized={setPathHasBeenVisualized}
         ></VisualizeButton>
         <AlgorithmDropdown setAlgorithm={setAlgorithm}></AlgorithmDropdown>
-        <GenerateMazeButton algorithm={mazeGenAlgorithm} grid={grid} setGrid={setGrid}></GenerateMazeButton>
-        <GenerateMazeDropdown setAlgorithm={setMazeGenAlgorithm}></GenerateMazeDropdown>
+        <Clear grid={grid} setGrid={setGrid} setPathHasBeenVisualized={setPathHasBeenVisualized}></Clear>
+        <ClearAll
+          grid={grid}
+          setGrid={setGrid}
+          setPathHasBeenVisualized={setPathHasBeenVisualized}
+        ></ClearAll>
       </div>
       <div className="grid" onMouseDown={handleGridMouseDown} onMouseUp={handleGridMouseUp}>
         {grid.map((row, rowIndex) => (

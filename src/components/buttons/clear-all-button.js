@@ -1,4 +1,5 @@
 import { clearAll } from '../../utils/helpers';
+import './buttons.css';
 
 export function ClearAll({ grid, setGrid, setPathHasBeenVisualized }) {
   function handleClick() {
@@ -8,7 +9,7 @@ export function ClearAll({ grid, setGrid, setPathHasBeenVisualized }) {
 
   return (
     <button className="clear-button" onClick={handleClick}>
-      Clear Grid
+      <span className="clear-all-button-text">Clear Grid</span>
     </button>
   );
 }

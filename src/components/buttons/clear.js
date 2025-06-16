@@ -1,4 +1,5 @@
 import { clearPath } from '../../utils/helpers.js';
+import './buttons.css';
 
 export function Clear({ grid, setGrid, setPathHasBeenVisualized }) {
   function handleClick() {
@@ -8,7 +9,7 @@ export function Clear({ grid, setGrid, setPathHasBeenVisualized }) {
 
   return (
     <button className="clear-button" onClick={handleClick}>
-      Clear Paths
+      <span className="clear-button-text">Clear Paths</span>
     </button>
   );
 }

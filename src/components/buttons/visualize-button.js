@@ -1,3 +1,4 @@
+import './buttons.css';
 import { aStar } from '../../algorithms/pathfinding/a-star.js';
 import { breadthFirstSearch } from '../../algorithms/pathfinding/breadth-first-search';
 import { depthFirstSearch } from '../../algorithms/pathfinding/depth-first-search';
@@ -49,8 +50,10 @@ export function VisualizeButton({
   }
 
   return (
-    <button className="visualize" onClick={handleClick}>
-      Visualize {algorithm}
+    <button className="visualize-button" onClick={handleClick}>
+      <span className="visualize-button-text">
+        {algorithm == '' ? 'Pick an algorithm!' : 'Visualize ' + algorithm.replace(/[-.]/g, ' ')}
+      </span>
     </button>
   );
 }
