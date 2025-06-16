@@ -7,8 +7,16 @@ export function AlgorithmDropdown({ setAlgorithm }) {
 
   return (
     <>
-      <select className="algorithm-dropdown" name="algorithms" id="algorithm-dropdown" onChange={handleEvent}>
-        <option value="">Algorithms</option>
+      <select
+        className="algorithm-dropdown"
+        name="algorithms"
+        id="algorithm-dropdown"
+        onChange={handleEvent}
+        defaultValue=""
+      >
+        <option value="" disabled hidden>
+          Algorithms
+        </option>
         <option value="a-star">A*</option>
         <option value="breadth-first-search">Breadth first serach</option>
         <option value="depth-first-search">Depth first search</option>
