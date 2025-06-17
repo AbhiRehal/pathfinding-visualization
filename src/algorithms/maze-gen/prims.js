@@ -6,7 +6,8 @@ export async function primsMazeGeneration(
   inBounds,
   getRandomInt,
   getGridInfo,
-  getCompassDirections
+  getCompassDirections,
+  mazeHasBeenVisualized
 ) {
   clearAll(grid, setGrid);
   const [x_dir, y_dir, startNode, endNode] = getGridInfo(grid);
@@ -60,9 +61,10 @@ export async function primsMazeGeneration(
       (random_cell_from_fs.x + random_neighbour_cell.x) / 2
     ].className = 'node';
 
-    // uncomment for animation
-    // setGrid([...localGrid]);
-    // await new Promise(resolve => setTimeout(resolve, 1));
+    if (!mazeHasBeenVisualized) {
+      setGrid([...localGrid]);
+      await new Promise(resolve => setTimeout(resolve, 1));
+    }
   } while (frontier_set.length > 0);
 
   localGrid[endNode.y][endNode.x].className = 'endNode';

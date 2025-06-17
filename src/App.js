@@ -20,6 +20,7 @@ export default function Grid() {
   const [pathHasBeenVisualized, setPathHasBeenVisualized] = useState(false);
   const [moveNodeRandomly, setMoveNodeRandomly] = useState(true);
   const [needsStartNodeHint, setStartNodeHint] = useState(true);
+  const [mazeHasBeenVisualized, setMazeHasBeenVisualized] = useState(false);
 
   let timestamp = useRef(Date.now());
   useEffect(() => {
@@ -51,7 +52,13 @@ export default function Grid() {
     <>
       <div className="header">
         <TitleButton></TitleButton>
-        <GenerateMazeButton algorithm={mazeGenAlgorithm} grid={grid} setGrid={setGrid}></GenerateMazeButton>
+        <GenerateMazeButton
+          algorithm={mazeGenAlgorithm}
+          grid={grid}
+          setGrid={setGrid}
+          mazeHasBeenVisualized={mazeHasBeenVisualized}
+          setMazeHasBeenVisualized={setMazeHasBeenVisualized}
+        ></GenerateMazeButton>
         <GenerateMazeDropdown setAlgorithm={setMazeGenAlgorithm}></GenerateMazeDropdown>
         <VisualizeButton
           algorithm={algorithm}
@@ -65,6 +72,7 @@ export default function Grid() {
         <ClearAll
           grid={grid}
           setGrid={setGrid}
+          setMazeHasBeenVisualized={setMazeHasBeenVisualized}
           setPathHasBeenVisualized={setPathHasBeenVisualized}
         ></ClearAll>
       </div>
