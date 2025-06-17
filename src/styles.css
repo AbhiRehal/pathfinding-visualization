@@ -88,12 +88,13 @@
 }
 
 .wall {
+  animation: fade_in 0.3s;
   background-color: black;
   border: 1px solid #000;
+  color: #fff;
   width: 21px;
   height: 21px;
   padding: 0;
-  animation: fade_in 0.3s;
 }
 
 @keyframes pulse {

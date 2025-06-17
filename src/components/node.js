@@ -35,7 +35,8 @@ export function Node({
   timestamp,
   setStartNodeHint,
   distance,
-  weight
+  weight,
+  viewWeights
 }) {
   function handleMouseDown() {
     if (debug) {
@@ -302,6 +303,8 @@ export function Node({
       onMouseEnter={handleMouseEnter}
       onMouseLeave={handleMouseLeave}
       onMouseUp={handleMouseUp}
-    ></button>
+    >
+      {viewWeights ? weight : ''}
+    </button>
   );
 }

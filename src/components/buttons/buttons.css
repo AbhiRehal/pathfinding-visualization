@@ -1,6 +1,7 @@
 .clear-button,
 .generate-maze-button,
 .title-button,
+.toggle-button,
 .visualize-button {
   background-color: transparent;
   border: none;
@@ -28,13 +29,15 @@
 
 .clear-button:hover,
 .generate-maze-button:hover,
-.title-button:hover {
+.title-button:hover,
+.toggle-button:hover {
   color: #1cbc9c;
 }
 
 .clear-button:active,
 .generate-maze-button:active,
-.title-button:active {
+.title-button:active,
+.toggle-button:active {
   color: #fff;
 }
 

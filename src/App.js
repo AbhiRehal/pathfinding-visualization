@@ -9,6 +9,7 @@ import { GenerateMazeButton } from './components/buttons/generate-maze-button.js
 import { GenerateMazeDropdown } from './components/dropdowns/generate-maze-dropdown.js';
 import { getGridInfo, getRandomInt } from './utils/helpers.js';
 import { TitleButton } from './components/buttons/title-button.js';
+import { ToggleWeightsButton } from './components/buttons/toggle-weights.js';
 
 export default function Grid() {
   const [mouseIsDown, setMouseDown] = useState(false);
@@ -21,6 +22,7 @@ export default function Grid() {
   const [moveNodeRandomly, setMoveNodeRandomly] = useState(true);
   const [needsStartNodeHint, setStartNodeHint] = useState(true);
   const [mazeHasBeenVisualized, setMazeHasBeenVisualized] = useState(false);
+  const [viewWeights, setViewWeights] = useState(false);
 
   let timestamp = useRef(Date.now());
   useEffect(() => {
@@ -75,6 +77,7 @@ export default function Grid() {
           setMazeHasBeenVisualized={setMazeHasBeenVisualized}
           setPathHasBeenVisualized={setPathHasBeenVisualized}
         ></ClearAll>
+        <ToggleWeightsButton viewWeights={viewWeights} setViewWeights={setViewWeights}></ToggleWeightsButton>
       </div>
       <div className="legend">
         <div>
@@ -132,6 +135,7 @@ export default function Grid() {
                 setMoveNodeRandomly={setMoveNodeRandomly}
                 timestamp={timestamp}
                 setStartNodeHint={setStartNodeHint}
+                viewWeights={viewWeights}
               ></Node>
             ))}
           </div>
