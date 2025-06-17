@@ -2,7 +2,7 @@ import { getRandomInt, getRandomEvenInt } from './helpers';
 
 export function init() {
   const x_dir = 65;
-  const y_dir = 31;
+  const y_dir = 25;
 
   // grid is the board that we have. Start with an empty array for this
   const grid = [];
