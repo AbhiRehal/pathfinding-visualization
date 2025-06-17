@@ -269,7 +269,7 @@ export function Node({
     // if youre not dragging start/endNode just add/erase walls
     if (mouseIsDown) {
       let localGrid = [...grid];
-      if (className == 'startNode' || className == 'endNode') {
+      if (className == 'startNode' || className == 'startNode idle' || className == 'endNode') {
         return;
       }
       if (className != 'wall') {

@@ -3,7 +3,7 @@ import { aStar } from '../../algorithms/pathfinding/a-star.js';
 import { breadthFirstSearch } from '../../algorithms/pathfinding/breadth-first-search';
 import { depthFirstSearch } from '../../algorithms/pathfinding/depth-first-search';
 import { dijkstras } from '../../algorithms/pathfinding/dijkstras';
-import { inBounds, generatePath, getGridInfo, getCompassDirections } from '../../utils/helpers';
+import { clearPath, inBounds, generatePath, getGridInfo, getCompassDirections } from '../../utils/helpers';
 
 export function VisualizeButton({
   algorithm,
@@ -13,38 +13,18 @@ export function VisualizeButton({
   setPathHasBeenVisualized
 }) {
   async function handleClick() {
+    if (algorithm == '') {
+      return;
+    }
+    clearPath(grid, setGrid);
     if (algorithm == 'a-star') {
-      aStar(grid, setGrid, inBounds, generatePath, getGridInfo, getCompassDirections, pathHasBeenVisualized);
+      aStar(grid, setGrid, inBounds, generatePath, getGridInfo, getCompassDirections, false);
     } else if (algorithm == 'breadth-first-search') {
-      breadthFirstSearch(
-        grid,
-        setGrid,
-        inBounds,
-        generatePath,
-        getGridInfo,
-        getCompassDirections,
-        pathHasBeenVisualized
-      );
+      breadthFirstSearch(grid, setGrid, inBounds, generatePath, getGridInfo, getCompassDirections, false);
     } else if (algorithm == 'depth-first-search') {
-      depthFirstSearch(
-        grid,
-        setGrid,
-        inBounds,
-        generatePath,
-        getGridInfo,
-        getCompassDirections,
-        pathHasBeenVisualized
-      );
+      depthFirstSearch(grid, setGrid, inBounds, generatePath, getGridInfo, getCompassDirections, false);
     } else if (algorithm == 'dijkstras') {
-      dijkstras(
-        grid,
-        setGrid,
-        inBounds,
-        generatePath,
-        getGridInfo,
-        getCompassDirections,
-        pathHasBeenVisualized
-      );
+      dijkstras(grid, setGrid, inBounds, generatePath, getGridInfo, getCompassDirections, false);
     }
     setPathHasBeenVisualized(true);
   }
