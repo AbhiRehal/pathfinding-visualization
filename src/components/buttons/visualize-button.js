@@ -18,7 +18,7 @@ export function VisualizeButton({
     }
     clearPath(grid, setGrid);
     if (algorithm == 'a-star') {
-      aStar(grid, setGrid, inBounds, generatePath, getGridInfo, getCompassDirections, false);
+      aStar('manhattan', grid, setGrid, inBounds, generatePath, getGridInfo, getCompassDirections, false);
     } else if (algorithm == 'breadth-first-search') {
       breadthFirstSearch(grid, setGrid, inBounds, generatePath, getGridInfo, getCompassDirections, false);
     } else if (algorithm == 'depth-first-search') {

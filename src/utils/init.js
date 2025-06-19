@@ -15,13 +15,14 @@ export function init() {
         x: x,
         y: y,
         className: 'blank',
+        prev_className: 'blank',
         walkable: false,
         visited: false,
         prev_node_x: 0,
         prev_node_y: 0,
-        weight: getRandomInt(1, 10),
+        weight: getRandomInt(1, 4),
         distance: 1_000_000,
-        prev_className: 'blank'
+        heuristic: 1_000_000
       };
       row.push(node);
     }
@@ -34,6 +35,7 @@ export function init() {
   };
   grid[starterNode.y][starterNode.x].className = 'startNode';
   grid[starterNode.y][starterNode.x].distance = 0;
+  grid[starterNode.y][starterNode.x].heuristic = 0;
 
   const endNode = {
     x: getRandomInt(1, x_dir - 1),

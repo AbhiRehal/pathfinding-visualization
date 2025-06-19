@@ -1,3 +1,4 @@
+import { aStar } from '../algorithms/pathfinding/a-star';
 import { breadthFirstSearch } from '../algorithms/pathfinding/breadth-first-search';
 import { depthFirstSearch } from '../algorithms/pathfinding/depth-first-search';
 import { dijkstras } from '../algorithms/pathfinding/dijkstras';
@@ -36,7 +37,8 @@ export function Node({
   setStartNodeHint,
   distance,
   weight,
-  viewWeights
+  viewWeights,
+  heuristic
 }) {
   function handleMouseDown() {
     if (debug) {
@@ -128,7 +130,18 @@ export function Node({
     // youre just adding walls which can
     if (pathHasBeenVisualized) {
       clearPath(localGrid, setGrid);
-      if (algorithm == 'breadth-first-search') {
+      if (algorithm == 'a-star') {
+        aStar(
+          'manhattan',
+          grid,
+          setGrid,
+          inBounds,
+          generatePath,
+          getGridInfo,
+          getCompassDirections,
+          pathHasBeenVisualized
+        );
+      } else if (algorithm == 'breadth-first-search') {
         breadthFirstSearch(
           localGrid,
           setGrid,
@@ -183,7 +196,18 @@ export function Node({
 
       if (pathHasBeenVisualized) {
         clearPath(localGrid, setGrid);
-        if (algorithm == 'breadth-first-search') {
+        if (algorithm == 'a-star') {
+          aStar(
+            'manhattan',
+            grid,
+            setGrid,
+            inBounds,
+            generatePath,
+            getGridInfo,
+            getCompassDirections,
+            pathHasBeenVisualized
+          );
+        } else if (algorithm == 'breadth-first-search') {
           breadthFirstSearch(
             localGrid,
             setGrid,
@@ -229,7 +253,18 @@ export function Node({
 
       if (pathHasBeenVisualized) {
         clearPath(localGrid, setGrid);
-        if (algorithm == 'breadth-first-search') {
+        if (algorithm == 'a-star') {
+          aStar(
+            'manhattan',
+            grid,
+            setGrid,
+            inBounds,
+            generatePath,
+            getGridInfo,
+            getCompassDirections,
+            pathHasBeenVisualized
+          );
+        } else if (algorithm == 'breadth-first-search') {
           breadthFirstSearch(
             localGrid,
             setGrid,

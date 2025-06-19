@@ -136,6 +136,7 @@ export default function Grid() {
                 timestamp={timestamp}
                 setStartNodeHint={setStartNodeHint}
                 viewWeights={viewWeights}
+                heuristic={ele.heuristic}
               ></Node>
             ))}
           </div>
