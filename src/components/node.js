@@ -132,7 +132,7 @@ export function Node({
       clearPath(localGrid, setGrid);
       if (algorithm == 'a-star') {
         aStar(
-          'manhattan',
+          'm',
           grid,
           setGrid,
           inBounds,
@@ -198,7 +198,7 @@ export function Node({
         clearPath(localGrid, setGrid);
         if (algorithm == 'a-star') {
           aStar(
-            'manhattan',
+            'm',
             grid,
             setGrid,
             inBounds,
@@ -255,7 +255,7 @@ export function Node({
         clearPath(localGrid, setGrid);
         if (algorithm == 'a-star') {
           aStar(
-            'manhattan',
+            'm',
             grid,
             setGrid,
             inBounds,

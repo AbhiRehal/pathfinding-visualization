@@ -93,17 +93,19 @@ export async function aStar(
 }
 
 function calculateHeuristic(heuristic, localGrid, x_dir, y_dir, startNode, endNode) {
-  if (heuristic == 'manhattan') {
+  if (heuristic == 'm') {
     for (let row = 0; row < y_dir; row++) {
       for (let col = 0; col < x_dir; col++) {
         localGrid[row][col].heuristic = Math.abs(endNode.x - col) + Math.abs(endNode.y - row);
       }
     }
   }
-  if (heuristic == 'euclidean') {
+  if (heuristic == 'e') {
     for (let row = 0; row < y_dir; row++) {
       for (let col = 0; col < x_dir; col++) {
-        localGrid[row][col].heuristic = Math.sqrt(Math.abs(endNode.x - col) + Math.abs(endNode.y - row));
+        localGrid[row][col].heuristic = Math.sqrt(
+          Math.pow(endNode.x - col, 2) + Math.pow(endNode.y - row, 2)
+        );
       }
     }
   }
