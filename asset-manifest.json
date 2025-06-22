@@ -1,0 +1,13 @@
+{
+  "files": {
+    "main.css": "/AbhiRehal/pathfinding-visualization/static/css/main.00945da9.css",
+    "main.js": "/AbhiRehal/pathfinding-visualization/static/js/main.b7e531d9.js",
+    "index.html": "/AbhiRehal/pathfinding-visualization/index.html",
+    "main.00945da9.css.map": "/AbhiRehal/pathfinding-visualization/static/css/main.00945da9.css.map",
+    "main.b7e531d9.js.map": "/AbhiRehal/pathfinding-visualization/static/js/main.b7e531d9.js.map"
+  },
+  "entrypoints": [
+    "static/css/main.00945da9.css",
+    "static/js/main.b7e531d9.js"
+  ]
+}
