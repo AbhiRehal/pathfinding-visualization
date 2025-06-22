@@ -24,6 +24,30 @@ export default function Grid() {
   const [mazeHasBeenVisualized, setMazeHasBeenVisualized] = useState(false);
   const [viewWeights, setViewWeights] = useState(false);
 
+  function handleResize() {
+    const [x_dir, y_dir] = getGridInfo(grid);
+
+    let margin = 0;
+    if (window.innerWidth < window.innerHeight) {
+      margin = Math.floor(0.05 * window.innerWidth);
+    } else {
+      margin = Math.floor(0.05 * window.innerHeight);
+    }
+
+    const nodeSize =
+      Math.floor((window.innerHeight - 85 - margin) / y_dir) <
+      Math.floor((window.innerWidth - margin) / x_dir)
+        ? Math.floor((window.innerHeight - 85 - margin) / y_dir)
+        : Math.floor((window.innerWidth - margin) / x_dir);
+
+    document.documentElement.style.setProperty('--node-size', `${nodeSize}px`);
+  }
+
+  useEffect(() => {
+    window.addEventListener('resize', handleResize);
+    return () => window.removeEventListener('resize', handleResize);
+  }, []);
+
   let timestamp = useRef(Date.now());
   useEffect(() => {
     const interval = setInterval(() => {

@@ -1,8 +1,15 @@
 import { getRandomInt, getRandomEvenInt } from './helpers';
 
 export function init() {
-  const x_dir = 65;
-  const y_dir = 25;
+  let margin = 0;
+  if (window.innerWidth < window.innerHeight) {
+    margin = Math.floor(0.05 * window.innerWidth);
+  } else {
+    margin = Math.floor(0.05 * window.innerHeight);
+  }
+
+  const x_dir = Math.floor((window.innerWidth - margin) / 21);
+  const y_dir = Math.floor((window.innerHeight - 85 - margin) / 21);
 
   // grid is the board that we have. Start with an empty array for this
   const grid = [];
