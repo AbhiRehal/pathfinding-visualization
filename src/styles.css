@@ -1,3 +1,7 @@
+:root {
+  --node-size: 21px;
+}
+
 * {
   box-sizing: border-box;
   margin: 0;
@@ -5,11 +9,11 @@
 }
 
 .grid {
-  margin: 5vmin;
+  margin: 2.5vmin;
 }
 
 .grid-row {
-  height: 21px;
+  height: var(--node-size);
 }
 
 .header {
@@ -40,8 +44,8 @@
   background-color: #1703fc;
   border: 1px solid #fff;
   color: #fff;
-  width: 21px;
-  height: 21px;
+  width: var(--node-size);
+  height: var(--node-size);
   padding: 0;
 }
 
@@ -67,24 +71,24 @@
 .endNode {
   background-color: #fc0303;
   border: 1px solid #fff;
-  width: 21px;
-  height: 21px;
+  width: var(--node-size);
+  height: var(--node-size);
   padding: 0;
 }
 
 .blank {
   background-color: #fff;
   border: 1px solid #00bdda;
-  width: 21px;
-  height: 21px;
+  width: var(--node-size);
+  height: var(--node-size);
   padding: 0;
 }
 
 .node {
   background-color: #fff;
   border: 1px solid #00bdda;
-  width: 21px;
-  height: 21px;
+  width: var(--node-size);
+  height: var(--node-size);
   padding: 0;
 }
 
@@ -93,8 +97,8 @@
   background-color: black;
   border: 1px solid #000;
   color: #fff;
-  width: 21px;
-  height: 21px;
+  width: var(--node-size);
+  height: var(--node-size);
   padding: 0;
 }
 
@@ -125,8 +129,8 @@
 .frontier {
   background-color: black;
   border: 1.5px solid red;
-  width: 21px;
-  height: 21px;
+  width: var(--node-size);
+  height: var(--node-size);
   padding: 0;
 }
 
@@ -152,16 +156,16 @@
 .visited {
   background-color: #00bdda;
   border: 1px solid #fff;
-  width: 21px;
-  height: 21px;
+  width: var(--node-size);
+  height: var(--node-size);
   padding: 0;
 }
 
 .visited-animated {
   background-color: #00bdda;
   border: 1px solid #fff;
-  width: 21px;
-  height: 21px;
+  width: var(--node-size);
+  height: var(--node-size);
   padding: 0;
   animation: pulse_2 0.6s;
 }
@@ -169,16 +173,16 @@
 .path {
   background-color: #32a852;
   border: 1px solid #32a852;
-  width: 21px;
-  height: 21px;
+  width: var(--node-size);
+  height: var(--node-size);
   padding: 0;
 }
 
 .path-animated {
   background-color: #32a852;
   border: 1px solid #32a852;
-  width: 21px;
-  height: 21px;
+  width: var(--node-size);
+  height: var(--node-size);
   padding: 0;
   animation: pulse 0.6s;
 }
@@ -186,16 +190,16 @@
 .on-stack {
   background-color: rgba(178, 67, 255, 0.75);
   border: 1px solid #fff;
-  width: 21px;
-  height: 21px;
+  width: var(--node-size);
+  height: var(--node-size);
   padding: 0;
 }
 
 .on-stack-animated {
   background-color: rgba(178, 67, 255, 0.75);
   border: 1px solid #fff;
-  width: 21px;
-  height: 21px;
+  width: var(--node-size);
+  height: var(--node-size);
   padding: 0;
   animation: pulse_2 0.6s;
 }
