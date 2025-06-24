@@ -11,6 +11,7 @@ import { getGridInfo, getRandomInt } from './utils/helpers.js';
 import { TitleButton } from './components/buttons/title-button.js';
 import { ToggleWeightsButton } from './components/buttons/toggle-weights.js';
 import { SidebarButton } from './components/buttons/sidebar-button.js';
+import { Legend } from './components/legend.js';
 
 export default function Grid() {
   const [mouseIsDown, setMouseDown] = useState(false);
@@ -106,33 +107,7 @@ export default function Grid() {
         <ToggleWeightsButton viewWeights={viewWeights} setViewWeights={setViewWeights}></ToggleWeightsButton>
         <SidebarButton sidebarVisible={sidebarVisible} setSidebarVisible={setSidebarVisible}></SidebarButton>
       </div>
-      <div className="legend">
-        <div>
-          <label>Start Node</label>
-          <Node className="startNode"></Node>
-        </div>
-        <div>
-          <label>Target Node</label>
-          <Node className="endNode"></Node>
-        </div>
-        <div>
-          <label>Unvisited Node</label>
-          <Node className="blank"></Node>
-        </div>
-        <div>
-          <label>Visited Nodes</label>
-          <Node className="visited"></Node>
-          <Node className="on-stack"></Node>
-        </div>
-        <div>
-          <label>Shorest Path</label>
-          <Node className="path"></Node>
-        </div>
-        <div>
-          <label>Wall</label>
-          <Node className="wall"></Node>
-        </div>
-      </div>
+      <Legend></Legend>
       <div className="grid" onMouseDown={handleGridMouseDown} onMouseUp={handleGridMouseUp}>
         {grid.map((row, rowIndex) => (
           <div key={rowIndex} className="grid-row">
