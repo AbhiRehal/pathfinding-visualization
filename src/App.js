@@ -10,6 +10,7 @@ import { GenerateMazeDropdown } from './components/dropdowns/generate-maze-dropd
 import { getGridInfo, getRandomInt } from './utils/helpers.js';
 import { TitleButton } from './components/buttons/title-button.js';
 import { ToggleWeightsButton } from './components/buttons/toggle-weights.js';
+import { SidebarButton } from './components/buttons/sidebar-button.js';
 
 export default function Grid() {
   const [mouseIsDown, setMouseDown] = useState(false);
@@ -23,6 +24,7 @@ export default function Grid() {
   const [needsStartNodeHint, setStartNodeHint] = useState(true);
   const [mazeHasBeenVisualized, setMazeHasBeenVisualized] = useState(false);
   const [viewWeights, setViewWeights] = useState(false);
+  const [sidebarVisible, setSidebarVisible] = useState(false);
 
   function handleResize() {
     const [x_dir, y_dir] = getGridInfo(grid);
@@ -102,6 +104,7 @@ export default function Grid() {
           setPathHasBeenVisualized={setPathHasBeenVisualized}
         ></ClearAll>
         <ToggleWeightsButton viewWeights={viewWeights} setViewWeights={setViewWeights}></ToggleWeightsButton>
+        <SidebarButton sidebarVisible={sidebarVisible} setSidebarVisible={setSidebarVisible}></SidebarButton>
       </div>
       <div className="legend">
         <div>
