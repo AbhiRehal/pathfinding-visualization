@@ -50,7 +50,7 @@ export function Node({
 
     // set booleans to true if initial click is on start/endNode or on a blinking node due to idle animation
     // also sets the node hint boolena to false because the users already clicked it
-    if (className == 'startNode' || className == 'startNode idle') {
+    if (className == 'startNode' || className == 'startNode hint') {
       timestamp.current = Date.now();
       let localGrid = [...grid];
       localGrid[row][col].className = 'startNode';
@@ -305,7 +305,7 @@ export function Node({
     // if youre not dragging start/endNode just add/erase walls
     if (mouseIsDown) {
       let localGrid = [...grid];
-      if (className == 'startNode' || className == 'startNode idle' || className == 'endNode') {
+      if (className == 'startNode' || className == 'startNode hint' || className == 'endNode') {
         return;
       }
       if (className != 'wall') {

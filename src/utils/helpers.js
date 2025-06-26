@@ -25,7 +25,7 @@ export function generatePath(grid, endNode) {
     }
     path.push(path_node);
     path_node = localGrid[path_node.prev_node_y][path_node.prev_node_x];
-  } while (path_node.className != 'startNode' && path_node.className != 'startNode idle');
+  } while (path_node.className != 'startNode' && path_node.className != 'startNode hint');
 
   return path;
 }
@@ -45,7 +45,7 @@ export function getGridInfo(grid) {
   };
   for (let row = 0; row < grid.length; row++) {
     for (let col = 0; col < grid[row].length; col++) {
-      if (grid[row][col].className == 'startNode' || grid[row][col].className == 'startNode idle') {
+      if (grid[row][col].className == 'startNode' || grid[row][col].className == 'startNode hint') {
         startNode.x = col;
         startNode.y = row;
         startNode.distance = grid[row][col].distance;
@@ -100,14 +100,14 @@ export function clearPath(grid, setGrid) {
         node.className != 'wall' &&
         node.className != 'startNode' &&
         node.className != 'endNode' &&
-        node.className != 'startNode idle'
+        node.className != 'startNode hint'
       ) {
         node.className = 'node';
       }
       if ((node.className == 'startNode' || node.className == 'endNode') && !node.prev_className == 'wall') {
         node.prev_className = 'node';
       }
-      if (node.className == 'startNode idle' || node.className == 'startNode') {
+      if (node.className == 'startNode hint' || node.className == 'startNode') {
         node.distance = 0;
       } else {
         node.distance = 1_000_000;
@@ -127,7 +127,7 @@ export function clearAll(grid, setGrid) {
     for (let col = 0; col < x_dir; col++) {
       const node = localGrid[row][col];
       if (
-        node.className != 'startNode idle' &&
+        node.className != 'startNode hint' &&
         node.className != 'startNode' &&
         node.className != 'endNode'
       ) {

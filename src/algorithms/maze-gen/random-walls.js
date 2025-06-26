@@ -10,7 +10,7 @@ export async function randomWalls(grid, setGrid, getRandomInt, getGridInfo, maze
       if (getRandomInt(0, 100) < 35) {
         if (
           localGrid[row][col].className == 'startNode' ||
-          localGrid[row][col].className == 'startNode idle' ||
+          localGrid[row][col].className == 'startNode hint' ||
           localGrid[row][col].className == 'endNode'
         ) {
           continue;

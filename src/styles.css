@@ -49,7 +49,7 @@
   padding: 0;
 }
 
-.idle {
+.hint {
   animation: hint 1.5s infinite;
 }
 

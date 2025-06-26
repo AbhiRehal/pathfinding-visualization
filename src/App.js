@@ -12,6 +12,9 @@ import { TitleButton } from './components/buttons/title-button.js';
 import { ToggleWeightsButton } from './components/buttons/toggle-weights.js';
 import { SidebarButton } from './components/buttons/sidebar-button.js';
 import { Legend } from './components/legend.js';
+import { driver } from 'driver.js';
+import 'driver.js/dist/driver.css';
+import { tourSteps } from './config/tourConfig.js';
 
 export default function Grid() {
   const [mouseIsDown, setMouseDown] = useState(false);
@@ -19,13 +22,42 @@ export default function Grid() {
   const [draggingEndNode, setDraggingEndNode] = useState(false);
   const [grid, setGrid] = useState(() => init());
   const [algorithm, setAlgorithm] = useState('');
-  const [mazeGenAlgorithm, setMazeGenAlgorithm] = useState('prims');
+  const [mazeGenAlgorithm, setMazeGenAlgorithm] = useState('random');
   const [pathHasBeenVisualized, setPathHasBeenVisualized] = useState(false);
   const [moveNodeRandomly, setMoveNodeRandomly] = useState(true);
   const [needsStartNodeHint, setStartNodeHint] = useState(true);
   const [mazeHasBeenVisualized, setMazeHasBeenVisualized] = useState(false);
   const [viewWeights, setViewWeights] = useState(false);
   const [sidebarVisible, setSidebarVisible] = useState(false);
+
+  useEffect(() => {
+    const delayTour = setTimeout(() => {
+      let driverObj = driver({
+        showProgress: false,
+        allowClose: false,
+        showButtons: ['next', 'close'],
+        steps: [
+          {
+            element: null,
+            popover: {
+              title: 'Pathfinding Visualizer',
+              description: 'This short tutorial will walk you through the features of this application.',
+              doneBtnText: 'Continue',
+              onNextClick: () => {
+                driverObj = driver({
+                  showProgress: true,
+                  steps: [...tourSteps]
+                });
+                driverObj.drive();
+              }
+            }
+          }
+        ]
+      });
+      driverObj.drive();
+    }, 50);
+    return () => clearInterval(delayTour);
+  }, []);
 
   function handleResize() {
     const [x_dir, y_dir] = getGridInfo(grid);
@@ -60,7 +92,7 @@ export default function Grid() {
       if (needsStartNodeHint && !pathHasBeenVisualized) {
         let localGrid = [...grid];
         const [x_dir, y_dir, startNode, endNode] = getGridInfo(localGrid);
-        localGrid[startNode.y][startNode.x].className = 'startNode idle';
+        localGrid[startNode.y][startNode.x].className = 'startNode hint';
         setStartNodeHint(false);
         setGrid(localGrid);
       }

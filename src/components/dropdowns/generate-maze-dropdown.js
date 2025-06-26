@@ -13,8 +13,8 @@ export function GenerateMazeDropdown({ setAlgorithm }) {
         id="generate-maze-dropdown"
         onChange={handleEvent}
       >
-        <option value="prims">Prims Maze Gen</option>
         <option value="random">Random Walls</option>
+        <option value="prims">Prims Maze Gen</option>
       </select>
     </>
   );

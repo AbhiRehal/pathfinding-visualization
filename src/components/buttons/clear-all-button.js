@@ -9,7 +9,7 @@ export function ClearAll({ grid, setGrid, setMazeHasBeenVisualized, setPathHasBe
   }
 
   return (
-    <button className="clear-button" onClick={handleClick}>
+    <button className="clear-all-button" onClick={handleClick}>
       <span className="clear-all-button-text">Clear Grid</span>
     </button>
   );
