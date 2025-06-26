@@ -16,10 +16,9 @@ export const tourSteps = [
   {
     element: '.generate-maze-dropdown',
     popover: {
-      description:
-        'Select a maze generation algorithm to generate a maze for you.</br></br>Or you can even draw your own by clicking and dragging your mouse on the grid!',
+      description: 'Select an algorithm you would like to use to generate a maze.',
       align: 'center',
-      side: 'bottom'
+      side: 'right'
     },
     onHighlighted: element => {
       element.classList.add('idle');
@@ -31,13 +30,13 @@ export const tourSteps = [
   {
     element: '.generate-maze-button',
     popover: {
-      description: 'You can then use this button to generate the maze.',
+      description:
+        'You can then use this button to generate the maze.</br></br>Or you can even draw your own by clicking and dragging your mouse on the grid!',
       align: 'center',
-      side: 'bottom'
+      side: 'right'
     },
     onHighlighted: element => {
       element.classList.add('idle');
-      // element.click();
     },
     onDeselected: element => {
       element.classList.remove('idle');
@@ -48,12 +47,10 @@ export const tourSteps = [
     popover: {
       description: "Select the pathfinding algorithm you'd like to visualize...",
       align: 'center',
-      side: 'bottom'
+      side: 'left'
     },
     onHighlighted: element => {
       element.classList.add('idle');
-      // element.value = 'a-star';
-      // element.dispatchEvent(new Event('change', { bubbles: true }));
     },
     onDeselected: element => {
       element.classList.remove('idle');
@@ -64,11 +61,10 @@ export const tourSteps = [
     popover: {
       description: 'and visualize it!',
       align: 'center',
-      side: 'bottom'
+      side: 'left'
     },
     onHighlighted: element => {
       element.classList.add('idle');
-      // element.click();
     },
     onDeselected: element => {
       element.classList.remove('idle');
@@ -86,10 +82,6 @@ export const tourSteps = [
     },
     onDeselected: element => {
       element.classList.remove('idle');
-      // const clearAllButton = document.querySelector('.clear-all-button');
-      // if (clearAllButton) {
-      //   clearAllButton.click();
-      // }
     }
   }
 ];
