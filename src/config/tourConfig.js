@@ -31,7 +31,7 @@ export const tourSteps = [
     element: '.generate-maze-button',
     popover: {
       description:
-        'You can then use this button to generate the maze.</br></br>Or you can even draw your own by clicking and dragging your mouse on the grid!',
+        'You can then use this button to generate the maze.</br></br>Or you can even draw your own by clicking and dragging your mouse on the grid!</br></br><img src="/assets/walls.gif" alt="Wall placing gif"/>',
       align: 'center',
       side: 'right'
     },
