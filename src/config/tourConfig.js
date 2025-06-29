@@ -19,7 +19,10 @@ export const tourSteps = [
     popover: {
       title: "What's a pathfinding algorithm?",
       description:
-        'Pathfinding algorithms do as the name suggests and determine how to get from point A to B.</br></br><img src="/assets/pathfinding-demo.gif" alt="Pathfinding demo"/>'
+        'Pathfinding algorithms do as the name suggests and determine how to get from point A to B.</br></br><img src="/assets/pathfinding-demo.gif" alt="Pathfinding demo"/>',
+      onPopoverRender: (popover, { config, state, driver }) => {
+        setTimeout(() => driver.refresh(), 200);
+      }
     }
   },
   {
