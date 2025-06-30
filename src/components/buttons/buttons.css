@@ -1,3 +1,7 @@
+:root {
+  --sidebar-button-padding: 30px;
+}
+
 .clear-all-button,
 .clear-button,
 .generate-maze-button,
@@ -14,6 +18,10 @@
   font-size: 14px;
   font-weight: 700;
   text-align: center;
+}
+
+.sidebar-button {
+  padding: 0 var(--sidebar-button-padding) 0 0;
 }
 
 .visualize-button {

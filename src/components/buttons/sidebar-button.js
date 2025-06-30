@@ -1,7 +1,42 @@
 import './buttons.css';
+import { getGridInfo } from '../../utils/helpers';
 
-export function SidebarButton({ sidebarVisible, setSidebarVisible }) {
+export function SidebarButton({ grid, sidebarVisible, setSidebarVisible }) {
   function handleClick() {
+    const [x_dir, y_dir] = getGridInfo(grid);
+
+    let margin = 0;
+    if (window.innerWidth < window.innerHeight) {
+      margin = Math.floor(0.05 * window.innerWidth);
+    } else {
+      margin = Math.floor(0.05 * window.innerHeight);
+    }
+
+    let nodeSize = 0;
+    if (!sidebarVisible) {
+      nodeSize =
+        Math.floor((window.innerHeight - Math.floor(0.1 * window.innerHeight) - margin) / y_dir) <
+        Math.floor((window.innerWidth - Math.floor(0.2 * window.innerWidth) - margin) / x_dir)
+          ? Math.floor((window.innerHeight - Math.floor(0.1 * window.innerHeight) - margin) / y_dir)
+          : Math.floor((window.innerWidth - Math.floor(0.2 * window.innerWidth) - margin) / x_dir);
+      // set --sidebar-button-padding after calculating the required padding
+      document.querySelector('.sidebar-button').classList.add('sidebar-button-padding');
+      document.documentElement.style.setProperty(
+        '--sidebar-button-padding',
+        `${Math.floor(0.2 * window.innerWidth) - 34}px`
+      );
+    } else {
+      nodeSize =
+        Math.floor((window.innerHeight - Math.floor(0.1 * window.innerHeight) - margin) / y_dir) <
+        Math.floor((window.innerWidth - margin) / x_dir)
+          ? Math.floor((window.innerHeight - Math.floor(0.1 * window.innerHeight) - margin) / y_dir)
+          : Math.floor((window.innerWidth - margin) / x_dir);
+      // set --sidebar-button-padding to default 30px when sidebar is closed
+      document.querySelector('.sidebar-button').classList.remove('sidebar-button-padding');
+      document.documentElement.style.setProperty('--sidebar-button-padding', `30px`);
+    }
+    document.documentElement.style.setProperty('--node-size', `${nodeSize}px`);
+
     setSidebarVisible(!sidebarVisible);
   }
 

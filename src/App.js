@@ -136,45 +136,54 @@ export default function Grid() {
           setMazeHasBeenVisualized={setMazeHasBeenVisualized}
           setPathHasBeenVisualized={setPathHasBeenVisualized}
         ></ClearAll>
-        <ToggleWeightsButton viewWeights={viewWeights} setViewWeights={setViewWeights}></ToggleWeightsButton>
-        <SidebarButton sidebarVisible={sidebarVisible} setSidebarVisible={setSidebarVisible}></SidebarButton>
+        {/* <ToggleWeightsButton viewWeights={viewWeights} setViewWeights={setViewWeights}></ToggleWeightsButton> */}
+        <SidebarButton
+          grid={grid}
+          sidebarVisible={sidebarVisible}
+          setSidebarVisible={setSidebarVisible}
+        ></SidebarButton>
       </div>
-      <Legend></Legend>
-      <div className="grid" onMouseDown={handleGridMouseDown} onMouseUp={handleGridMouseUp}>
-        {grid.map((row, rowIndex) => (
-          <div key={rowIndex} className="grid-row">
-            {row.map((ele, colIndex) => (
-              <Node
-                key={ele.index}
-                mouseIsDown={mouseIsDown}
-                visited={ele.visited}
-                walkable={ele.walkable}
-                className={ele.className}
-                row={rowIndex}
-                col={colIndex}
-                setGrid={setGrid}
-                grid={grid}
-                prev_node_row={ele.prev_node_y}
-                prev_node_col={ele.prev_node_x}
-                weight={ele.weight}
-                distance={ele.distance}
-                draggingStartNode={draggingStartNode}
-                setDraggingStartNode={setDraggingStartNode}
-                draggingEndNode={draggingEndNode}
-                setDraggingEndNode={setDraggingEndNode}
-                prevClassName={ele.prev_className}
-                pathHasBeenVisualized={pathHasBeenVisualized}
-                algorithm={algorithm}
-                moveNodeRandomly={moveNodeRandomly}
-                setMoveNodeRandomly={setMoveNodeRandomly}
-                timestamp={timestamp}
-                setStartNodeHint={setStartNodeHint}
-                viewWeights={viewWeights}
-                heuristic={ele.heuristic}
-              ></Node>
+      <div className="content-container">
+        <div className="legend-grid-container">
+          <Legend></Legend>
+          <div className="grid" onMouseDown={handleGridMouseDown} onMouseUp={handleGridMouseUp}>
+            {grid.map((row, rowIndex) => (
+              <div key={rowIndex} className="grid-row">
+                {row.map((ele, colIndex) => (
+                  <Node
+                    key={ele.index}
+                    mouseIsDown={mouseIsDown}
+                    visited={ele.visited}
+                    walkable={ele.walkable}
+                    className={ele.className}
+                    row={rowIndex}
+                    col={colIndex}
+                    setGrid={setGrid}
+                    grid={grid}
+                    prev_node_row={ele.prev_node_y}
+                    prev_node_col={ele.prev_node_x}
+                    weight={ele.weight}
+                    distance={ele.distance}
+                    draggingStartNode={draggingStartNode}
+                    setDraggingStartNode={setDraggingStartNode}
+                    draggingEndNode={draggingEndNode}
+                    setDraggingEndNode={setDraggingEndNode}
+                    prevClassName={ele.prev_className}
+                    pathHasBeenVisualized={pathHasBeenVisualized}
+                    algorithm={algorithm}
+                    moveNodeRandomly={moveNodeRandomly}
+                    setMoveNodeRandomly={setMoveNodeRandomly}
+                    timestamp={timestamp}
+                    setStartNodeHint={setStartNodeHint}
+                    viewWeights={viewWeights}
+                    heuristic={ele.heuristic}
+                  ></Node>
+                ))}
+              </div>
             ))}
           </div>
-        ))}
+        </div>
+        {sidebarVisible ? <div className="sidebar-panel"></div> : null}
       </div>
     </>
   );
