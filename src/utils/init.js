@@ -9,7 +9,7 @@ export function init() {
   }
 
   const x_dir = Math.floor((window.innerWidth - margin) / 21);
-  const y_dir = Math.floor((window.innerHeight - 85 - margin) / 21);
+  const y_dir = Math.floor((window.innerHeight - Math.floor(0.15 * window.innerHeight) - margin) / 21);
 
   // grid is the board that we have. Start with an empty array for this
   const grid = [];

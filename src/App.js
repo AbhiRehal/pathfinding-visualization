@@ -70,9 +70,9 @@ export default function Grid() {
     }
 
     const nodeSize =
-      Math.floor((window.innerHeight - 85 - margin) / y_dir) <
+      Math.floor((window.innerHeight - Math.floor(0.15 * window.innerHeight) - margin) / y_dir) <
       Math.floor((window.innerWidth - margin) / x_dir)
-        ? Math.floor((window.innerHeight - 85 - margin) / y_dir)
+        ? Math.floor((window.innerHeight - Math.floor(0.15 * window.innerHeight) - margin) / y_dir)
         : Math.floor((window.innerWidth - margin) / x_dir);
 
     document.documentElement.style.setProperty('--node-size', `${nodeSize}px`);

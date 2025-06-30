@@ -25,6 +25,7 @@ export function SidebarButton({ grid, sidebarVisible, setSidebarVisible }) {
         '--sidebar-button-padding',
         `${Math.floor(0.2 * window.innerWidth) - 34}px`
       );
+      document.documentElement.style.setProperty('--sidebar-button-pointer', 'e-resize');
     } else {
       nodeSize =
         Math.floor((window.innerHeight - Math.floor(0.1 * window.innerHeight) - margin) / y_dir) <
@@ -34,6 +35,7 @@ export function SidebarButton({ grid, sidebarVisible, setSidebarVisible }) {
       // set --sidebar-button-padding to default 30px when sidebar is closed
       document.querySelector('.sidebar-button').classList.remove('sidebar-button-padding');
       document.documentElement.style.setProperty('--sidebar-button-padding', `30px`);
+      document.documentElement.style.setProperty('--sidebar-button-pointer', 'w-resize');
     }
     document.documentElement.style.setProperty('--node-size', `${nodeSize}px`);
 

@@ -1,5 +1,6 @@
 :root {
   --sidebar-button-padding: 30px;
+  --sidebar-button-pointer: w-resize;
 }
 
 .clear-all-button,
@@ -22,6 +23,7 @@
 
 .sidebar-button {
   padding: 0 var(--sidebar-button-padding) 0 0;
+  cursor: var(--sidebar-button-pointer);
 }
 
 .visualize-button {
