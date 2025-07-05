@@ -14,28 +14,27 @@ export function SidebarButton({ grid, sidebarVisible, setSidebarVisible }) {
 
     let nodeSize = 0;
     if (!sidebarVisible) {
-      nodeSize =
-        Math.floor((window.innerHeight - Math.floor(0.1 * window.innerHeight) - margin) / y_dir) <
-        Math.floor((window.innerWidth - Math.floor(0.2 * window.innerWidth) - margin) / x_dir)
-          ? Math.floor((window.innerHeight - Math.floor(0.1 * window.innerHeight) - margin) / y_dir)
-          : Math.floor((window.innerWidth - Math.floor(0.2 * window.innerWidth) - margin) / x_dir);
       // set --sidebar-button-padding after calculating the required padding
       document.querySelector('.sidebar-button').classList.add('sidebar-button-padding');
-      document.documentElement.style.setProperty(
-        '--sidebar-button-padding',
-        `${Math.floor(0.2 * window.innerWidth) - 34}px`
-      );
+      const sidebarWidth = getComputedStyle(document.documentElement).getPropertyValue('--sidebar-width');
+      const sidebarWidthPixels = (window.innerWidth * parseFloat(sidebarWidth)) / 100;
+      document.documentElement.style.setProperty('--sidebar-button-padding', `${sidebarWidthPixels - 34}px`);
       document.documentElement.style.setProperty('--sidebar-button-pointer', 'e-resize');
+      const height = Math.floor(
+        (window.innerHeight - Math.floor(0.15 * window.innerHeight) - margin) / y_dir
+      );
+      const width = Math.floor((window.innerWidth - sidebarWidthPixels - margin) / x_dir);
+      nodeSize = height < width ? height : width;
     } else {
-      nodeSize =
-        Math.floor((window.innerHeight - Math.floor(0.1 * window.innerHeight) - margin) / y_dir) <
-        Math.floor((window.innerWidth - margin) / x_dir)
-          ? Math.floor((window.innerHeight - Math.floor(0.1 * window.innerHeight) - margin) / y_dir)
-          : Math.floor((window.innerWidth - margin) / x_dir);
       // set --sidebar-button-padding to default 30px when sidebar is closed
       document.querySelector('.sidebar-button').classList.remove('sidebar-button-padding');
       document.documentElement.style.setProperty('--sidebar-button-padding', `30px`);
       document.documentElement.style.setProperty('--sidebar-button-pointer', 'w-resize');
+      const height = Math.floor(
+        (window.innerHeight - Math.floor(0.15 * window.innerHeight) - margin) / y_dir
+      );
+      const width = Math.floor((window.innerWidth - margin) / x_dir);
+      nodeSize = height < width ? height : width;
     }
     document.documentElement.style.setProperty('--node-size', `${nodeSize}px`);
 
@@ -49,23 +48,23 @@ export function SidebarButton({ grid, sidebarVisible, setSidebarVisible }) {
           <path
             d="M21.97 15V9C21.97 4 19.97 2 14.97 2H8.96997C3.96997 2 1.96997 4 1.96997 9V15C1.96997 20 3.96997 22 8.96997 22H14.97C19.97 22 21.97 20 21.97 15Z"
             stroke="#fff"
-            stroke-width="1.5"
-            stroke-linecap="round"
-            stroke-linejoin="round"
+            strokeWidth="1.5"
+            strokeLinecap="round"
+            strokeLinejoin="round"
           ></path>
           <path
             d="M14.97 2V22"
             stroke="#fff"
-            stroke-width="1.5"
-            stroke-linecap="round"
-            stroke-linejoin="round"
+            strokeWidth="1.5"
+            strokeLinecap="round"
+            strokeLinejoin="round"
           ></path>
           <path
             d="M7.96997 9.43994L10.53 11.9999L7.96997 14.5599"
             stroke="#fff"
-            stroke-width="1.5"
-            stroke-linecap="round"
-            stroke-linejoin="round"
+            strokeWidth="1.5"
+            strokeLinecap="round"
+            strokeLinejoin="round"
           ></path>
         </svg>
       ) : (
