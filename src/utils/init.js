@@ -8,6 +8,10 @@ export function init() {
     margin = Math.floor(0.05 * window.innerHeight);
   }
 
+  // force a 65xN grid by setting pixel size at init time
+  const nodeSize = Math.floor((window.innerWidth - margin) / 65);
+  document.documentElement.style.setProperty('--node-size', `${nodeSize}px`);
+
   const x_dir = Math.floor((window.innerWidth - margin) / 21);
   const y_dir = Math.floor((window.innerHeight - Math.floor(0.15 * window.innerHeight) - margin) / 21);
 

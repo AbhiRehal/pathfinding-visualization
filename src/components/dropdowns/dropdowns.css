@@ -14,3 +14,8 @@
 .generate-maze-dropdown:hover {
   color: #1cbc9c;
 }
+
+.algorithm-dropdown option,
+.generate-maze-dropdown option {
+  color: #000;
+}

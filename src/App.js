@@ -141,6 +141,7 @@ export default function Grid() {
     const nodeSize = height < width ? height : width;
 
     document.documentElement.style.setProperty('--node-size', `${nodeSize}px`);
+    document.documentElement.style.setProperty('--sidebar-button-padding', `${sidebarWidthPixels - 34}px`);
   }
 
   // setup resizing listener for window
