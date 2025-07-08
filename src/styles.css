@@ -45,25 +45,6 @@
   display: grid;
 }
 
-.sidebar-layout-container {
-  display: flex;
-}
-
-.sidebar {
-  width: var(--sidebar-width);
-  height: 90vh;
-  background-color: #34495e;
-}
-
-.sidebar-resize-edge {
-  background-color: transparent;
-  cursor: ew-resize;
-  height: 90vh;
-  margin-right: -2px;
-  width: 4px;
-  z-index: 1000;
-}
-
 .visualize {
   background-color: #fff;
   border: 1px solid #000;
