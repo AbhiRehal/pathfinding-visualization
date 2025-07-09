@@ -114,8 +114,8 @@ export function Sidebar({ mousePosition, sidebarResizeRefObject }) {
             <br></br>
             <p>
               An algorithm is just a set of instructions a computer follows to solve a specific problem.
-              Pathfinding algorithms determine a route between 2 given points. Pathfinding algorithms can be
-              weighted or unweighted and directed or undirected.
+              Pathfinding algorithms determine a route between 2 given points. They can be weighted or
+              unweighted, and directed or undirected.
               <br></br>
               <br></br>
               Weighted algorithms take into account the cost of visiting a node while unweighted algorithms
@@ -136,7 +136,17 @@ export function Sidebar({ mousePosition, sidebarResizeRefObject }) {
                 <br></br>
                 <label>unweighted</label>
               </div>
+              <br></br>I mentioned earlier that algorithms can be directed or undirected but theres a subtle
+              distinction to be made here. It's more accurate to describe graphs as directed or undirected and
+              decribe algorithms as being able to work on directed or undirected graphs. In this project, the
+              graph (grid) is undirected which means that there is no edge-edge restriction i.e. there isn't a
+              scenario where you can move from node A &rarr; node B but not from node B &rarr; node A.
               <br></br>
+              <br></br> The real life analogy for this would be a one way street which is the perfect segway
+              into the why? Well, now you essentially know how google maps works! In real life, this grid
+              would be the roads you'd drive. The costs would be how busy a road was and as I'm sure you're
+              aware, some roads are one way. We could extend this to avoid motorways or add a stop by the
+              petstore. Hopefully this has added some context around this application.
             </p>
           </Tabs.Content>
           <Tabs.Content value="tab2" className="tabs-content">
