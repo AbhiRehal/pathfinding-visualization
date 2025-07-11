@@ -19,6 +19,28 @@ export function Sidebar({ mousePosition, sidebarResizeRefObject }) {
           <Tabs.List aria-label="tabs example" className="tabs-list">
             <Tabs.Trigger value="tab1" className="tab-icon">
               <svg
+                viewBox="0 0 24 24"
+                height="32px"
+                width="32px"
+                fill="none"
+                xmlns="http://www.w3.org/2000/svg"
+              >
+                <g id="SVGRepo_bgCarrier" stroke-width="0"></g>
+                <g id="SVGRepo_tracerCarrier" stroke-linecap="round" stroke-linejoin="round"></g>
+                <g id="SVGRepo_iconCarrier">
+                  {' '}
+                  <path
+                    d="M9.09 9C9.3251 8.33167 9.78915 7.76811 10.4 7.40913C11.0108 7.05016 11.7289 6.91894 12.4272 7.03871C13.1255 7.15849 13.7588 7.52152 14.2151 8.06353C14.6713 8.60553 14.9211 9.29152 14.92 10C14.92 12 11.92 13 11.92 13M12 17H12.01M22 12C22 17.5228 17.5228 22 12 22C6.47715 22 2 17.5228 2 12C2 6.47715 6.47715 2 12 2C17.5228 2 22 6.47715 22 12Z"
+                    stroke="#fff"
+                    stroke-width="2"
+                    stroke-linecap="round"
+                    stroke-linejoin="round"
+                  ></path>{' '}
+                </g>
+              </svg>
+            </Tabs.Trigger>
+            <Tabs.Trigger value="tab2" className="tab-icon">
+              <svg
                 viewBox="0 0 512 512"
                 height="32px"
                 width="32px"
@@ -35,7 +57,7 @@ export function Sidebar({ mousePosition, sidebarResizeRefObject }) {
                 </g>
               </svg>
             </Tabs.Trigger>
-            <Tabs.Trigger value="tab2" className="tab-icon">
+            <Tabs.Trigger value="tab3" className="tab-icon">
               <svg
                 viewBox="0 0 330 330"
                 height="32px"
@@ -57,7 +79,7 @@ export function Sidebar({ mousePosition, sidebarResizeRefObject }) {
                 </g>
               </svg>
             </Tabs.Trigger>
-            <Tabs.Trigger value="tab3" className="tab-icon">
+            <Tabs.Trigger value="tab4" className="tab-icon">
               <svg
                 viewBox="0 0 24 24"
                 height="32px"
@@ -82,7 +104,7 @@ export function Sidebar({ mousePosition, sidebarResizeRefObject }) {
                 </g>
               </svg>
             </Tabs.Trigger>
-            <Tabs.Trigger value="tab4" className="tab-icon">
+            <Tabs.Trigger value="tab5" className="tab-icon">
               <svg
                 viewBox="0 0 24 24"
                 height="32px"
@@ -110,7 +132,7 @@ export function Sidebar({ mousePosition, sidebarResizeRefObject }) {
             </Tabs.Trigger>
           </Tabs.List>
           <Tabs.Content value="tab1" className="tabs-content">
-            <h3>Algorithms</h3>
+            <h3>About</h3>
             <br></br>
             <p>
               An algorithm is just a set of instructions a computer follows to solve a specific problem.
@@ -150,12 +172,122 @@ export function Sidebar({ mousePosition, sidebarResizeRefObject }) {
             </p>
           </Tabs.Content>
           <Tabs.Content value="tab2" className="tabs-content">
-            <h4>Maze Generation</h4>
+            <h3>Algorithms</h3>
+            <br></br>
+            <Tabs.Root defaultValue="subtab-2" orientation="horizontal" className="subtabs-root">
+              <Tabs.List className="subtabs-list">
+                <Tabs.Trigger value="subtab-1" className="subtab-icon">
+                  A*
+                </Tabs.Trigger>
+                <Tabs.Trigger value="subtab-2" className="subtab-icon">
+                  BFS
+                </Tabs.Trigger>
+                <Tabs.Trigger value="subtab-3" className="subtab-icon">
+                  DFS
+                </Tabs.Trigger>
+                <Tabs.Trigger value="subtab-4" className="subtab-icon">
+                  Dijkstra's
+                </Tabs.Trigger>
+              </Tabs.List>
+              <Tabs.Content value="subtab-1" className="tabs-content">
+                <br></br>
+                <h4>A-star</h4>
+                <p>
+                  <br></br>
+                  A* is an informed search algorithm. It's weighted and makes use of a heuristic to guide its
+                  search towards the target. You'll notice that compared to the others, A* hones in on the
+                  target node as opposed to moving in a general outwards direction from the starting node.
+                  <br></br>
+                  <br></br>
+                  <img src="/assets/a-star-demo.gif" alt="A* demo gif"></img>
+                  *numbers above represent the heuristic + the distance for each node.
+                  <br></br>
+                  <br></br>
+                  <img src="/assets/a-star-distances.png" alt="A* distance png"></img>
+                  *numbers above represent the distance away form the starting node to each node. The distance
+                  is the cost of visiting a node plus the sum of all the nodes visited to get to said node.
+                  <br></br>
+                  <br></br>
+                  <img src="/assets/a-star-heuristic.png" alt="A* heuristic png"></img>
+                  *numbers above represent the heuristic for each node. In this example, it uses the Manhattan
+                  distance from the target node.
+                </p>
+              </Tabs.Content>
+              <Tabs.Content value="subtab-2" className="tabs-content">
+                <br></br>
+                <h4>Breadth First Search</h4>
+                <p>
+                  <br></br>
+                  BFS searches outwards in all directions equally. Being an unweighted algorithm, it doesn't
+                  take into account the cost of visiting a node. You can see in the gif below that
+                  irrespective of whether a node costs '1', '2' or '3' to visit, it searches them all the same
+                  and returns the simpliest route once its found its target node - irrespective of whether or
+                  not there is a cheaper route to get there. In an unweighted graph, BFS guarantees the
+                  shortest path.
+                  <br></br>
+                  <br></br>
+                  <img src="/assets/bfs-demo.gif" alt="BFS demo gif"></img>
+                  *numbers above represent the cost associated for visiting each node
+                </p>
+              </Tabs.Content>
+              <Tabs.Content value="subtab-3" className="tabs-content">
+                <br></br>
+                <h4>Depth First Search</h4>
+                <p>
+                  <br></br>
+                  DFS searches as far down a given path as it can before retracing its steps and then
+                  searching as far as possible on the next path until it completes running. DFS is unweighted
+                  and is NOT guaranteed to give you the shortest path.
+                  <br></br>
+                  <br></br>
+                  <img src="/assets/dfs-demo-1.gif" alt="DFS demo gif 1"></img>
+                  Notice how it just picks a direction and searches until it hits a deadend before retracing
+                  its steps until it can search down another path.
+                  <br></br>
+                  <br></br>
+                  <img src="/assets/dfs-demo-2.gif" alt="DFS demo gif 2"></img>
+                  DFS does NOT guarantee the shortest path.
+                </p>
+              </Tabs.Content>
+              <Tabs.Content value="subtab-4" className="tabs-content">
+                <br></br>
+                <h4>Dijkstra's</h4>
+                <p>
+                  <br></br>
+                  Dijksta's is a weighted algorithm and guarantees the shortest path on both weighted and
+                  unweighted graphs. On an unweighted graph, Dijkstra's and BFS are the same.
+                  <br></br>
+                  <br></br>
+                  <img src="/assets/dijkstras-demo.gif" alt="Dijkstra's demo gif"></img>
+                  *numbers above represent the distance of each node. The distance is calculated by adding the
+                  costs of visiting each node leading up to a given node to the number of steps taken to said
+                  node. Nodes of an unknown distance represented by &infin;
+                  <br></br>
+                  <br></br>
+                  Notice how it doesn't search outwards equally like BFS does. Instead it preferentially picks
+                  the node that is the shortest distance away to visit.
+                  <br></br>
+                  <br></br>
+                  Below you'll see that the path generated by this algorithm is convoluted. It has more turns
+                  than simply going straight down and then straight right, however, going straight down and
+                  right would be more expensive. You'll also notice that the algorithm hasn't uniformly
+                  explored outwards from the start.
+                  <br></br>
+                  <br></br>
+                  <img src="/assets/dijkstras-demo.png" alt="Dijkstra's demo png"></img>
+                  *numbers above represent the cost associated for visiting each node. In this case, the
+                  cheapest path costs 11.
+                </p>
+              </Tabs.Content>
+            </Tabs.Root>
           </Tabs.Content>
           <Tabs.Content value="tab3" className="tabs-content">
-            <h2>Settings</h2>
+            <h4>Maze Generation</h4>
           </Tabs.Content>
           <Tabs.Content value="tab4" className="tabs-content">
+            <h2>Settings</h2>
+          </Tabs.Content>
+          <Tabs.Content value="tab5" className="tabs-content">
             <h2>Share</h2>
           </Tabs.Content>
         </Tabs.Root>

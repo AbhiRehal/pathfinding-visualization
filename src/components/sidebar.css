@@ -24,7 +24,6 @@
 }
 
 .tabs-list {
-  color: red;
   display: flex;
   flex-direction: column;
   padding: 1vmin;
@@ -50,4 +49,20 @@
 .tabs-content img {
   height: auto;
   width: 100%;
+}
+
+.subtabs-root {
+  display: block;
+}
+
+.subtabs-list {
+  margin: 10px auto;
+}
+
+.subtab-icon[data-state='active'] {
+  transform: scale(1.2);
+}
+
+.subtab-icon[data-state='inactive'] {
+  opacity: 0.5;
 }
