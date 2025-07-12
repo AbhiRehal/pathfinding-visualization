@@ -136,7 +136,7 @@ export function Sidebar({ mousePosition, sidebarResizeRefObject }) {
             <br></br>
             <p>
               An algorithm is just a set of instructions a computer follows to solve a specific problem.
-              Pathfinding algorithms determine a route between 2 given points. They can be weighted or
+              Pathfinding algorithms determine a route between 2 given points (nodes). They can be weighted or
               unweighted, and directed or undirected.
               <br></br>
               <br></br>
@@ -282,13 +282,71 @@ export function Sidebar({ mousePosition, sidebarResizeRefObject }) {
             </Tabs.Root>
           </Tabs.Content>
           <Tabs.Content value="tab3" className="tabs-content">
-            <h4>Maze Generation</h4>
+            <h3>Maze Generation Algorithms</h3>
+            <Tabs.Root defaultValue="subtab-11" orientation="horizontal" className="subtabs-root">
+              <Tabs.List className="subtabs-list">
+                <Tabs.Trigger value="subtab-11" className="subtab-icon">
+                  Random Walls
+                </Tabs.Trigger>
+                <Tabs.Trigger value="subtab-12" className="subtab-icon">
+                  Prim's
+                </Tabs.Trigger>
+              </Tabs.List>
+              <Tabs.Content value="subtab-11" className="tabs-content">
+                <br></br>
+                <h4>Random Walls</h4>
+                <p>
+                  <br></br>
+                  Randomly turns blank squares into walls. You can change control the rate at which walls are
+                  placed under the advanced settings.
+                  <br></br>
+                  <br></br>
+                  <img src="/assets/random-walls-demo.gif" alt="Random walls demo gif"></img>
+                </p>
+              </Tabs.Content>
+              <Tabs.Content value="subtab-12" className="tabs-content">
+                <br></br>
+                <h4>Prim's</h4>
+                <p>
+                  <br></br>
+                  Prim's algorithm.
+                  <br></br>
+                  <br></br>
+                  <img src="/assets/prims-maze-demo.gif" alt="Prims maze demo gif"></img>
+                </p>
+              </Tabs.Content>
+            </Tabs.Root>
           </Tabs.Content>
           <Tabs.Content value="tab4" className="tabs-content">
-            <h2>Settings</h2>
+            <h3>Advanced Settings</h3>
+            <br></br>
+            <div>
+              <h5>Select the algorithms to compare:</h5>
+              <br></br>
+              <input type="checkbox" id="a-star-checkbox" name="a-star"></input>
+              <label for="a-star-checkbox">A*</label>
+              <br></br>
+              <input type="checkbox" id="bfs-checkbox" name="bfs-star"></input>
+              <label for="bfs-checkbox">BFS</label>
+              <br></br>
+              <input type="checkbox" id="dfs-checkbox" name="dfs-star"></input>
+              <label for="dfs-checkbox">DFS</label>
+              <br></br>
+              <input type="checkbox" id="dijkstras-checkbox" name="dijkstras-star"></input>
+              <label for="dijkstras-checkbox">Dijkstras</label>
+              <br></br>
+              <br></br>
+              <br></br>
+              <h5>Change the % chance of the random walls maze generation placing a wall</h5>
+              <br></br>
+              <div>
+                <label>Wall chance (10-100%)</label>
+                <input type="range" id="wall-chance" name="wall-chance" min="10" max="90"></input>
+              </div>
+            </div>
           </Tabs.Content>
           <Tabs.Content value="tab5" className="tabs-content">
-            <h2>Share</h2>
+            <h3>Share</h3>
           </Tabs.Content>
         </Tabs.Root>
       </div>
