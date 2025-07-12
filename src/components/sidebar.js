@@ -104,7 +104,12 @@ export function Sidebar({ mousePosition, sidebarResizeRefObject }) {
                 </g>
               </svg>
             </Tabs.Trigger>
-            <Tabs.Trigger value="tab5" className="tab-icon">
+            <button
+              className="share-button"
+              onClick={e => {
+                navigator.clipboard.writeText(window.location.href);
+              }}
+            >
               <svg
                 viewBox="0 0 24 24"
                 height="32px"
@@ -129,7 +134,7 @@ export function Sidebar({ mousePosition, sidebarResizeRefObject }) {
                   </g>{' '}
                 </g>
               </svg>
-            </Tabs.Trigger>
+            </button>
           </Tabs.List>
           <Tabs.Content value="tab1" className="tabs-content">
             <h3>About</h3>
@@ -340,13 +345,15 @@ export function Sidebar({ mousePosition, sidebarResizeRefObject }) {
               <h5>Change the % chance of the random walls maze generation placing a wall</h5>
               <br></br>
               <div>
-                <label>Wall chance (10-100%)</label>
+                <label>Wall chance (10-90%)</label>
                 <input type="range" id="wall-chance" name="wall-chance" min="10" max="90"></input>
               </div>
+              <br></br>
+              <h5>Show more info</h5>
+              <br></br>
+              <button className="toggle-info-button">Toggle heuristic</button>
+              <button className="toggle-info-button">Toggle weights</button>
             </div>
-          </Tabs.Content>
-          <Tabs.Content value="tab5" className="tabs-content">
-            <h3>Share</h3>
           </Tabs.Content>
         </Tabs.Root>
       </div>

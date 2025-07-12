@@ -68,3 +68,13 @@
 .subtab-icon[data-state='inactive'] {
   opacity: 0.5;
 }
+
+.share-button {
+  background-color: transparent;
+  border: none;
+  opacity: 0.33;
+}
+
+.share-button:active {
+  opacity: 1;
+}
