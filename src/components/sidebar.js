@@ -329,7 +329,9 @@ export function Sidebar({
                 <h4>Prim's</h4>
                 <p>
                   <br></br>
-                  Prim's algorithm.
+                  Prim's algorithm is fairly involved. Explaining it goes well beyond the scope of this
+                  project. If you're interested in how Prim's works read more{' '}
+                  <a href="https://weblog.jamisbuck.org/2011/1/10/maze-generation-prim-s-algorithm">here</a>.
                   <br></br>
                   <br></br>
                   <img src="/assets/prims-maze-demo.gif" alt="Prims maze demo gif"></img>

@@ -1,3 +1,3 @@
-## Notes
+# Pathfinding Visualization
 
-- different browsers handle rendering differently. Seems like safari aggressively rounds fractal pixel values while chrome/firefox wont - rather theyll have the 25.66667px and it'll appear like whitespace in the grid for example.
+This is a project I've made to visualise different pathfinding algorithms. Visit <https://abhirehal.github.io/pathfinding-visualization/> to try it out yourself!
