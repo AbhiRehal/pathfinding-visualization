@@ -38,7 +38,8 @@ export function Node({
   distance,
   weight,
   viewWeights,
-  heuristic
+  heuristic,
+  viewHeuristic
 }) {
   function handleMouseDown() {
     if (debug) {
@@ -339,7 +340,7 @@ export function Node({
       onMouseLeave={handleMouseLeave}
       onMouseUp={handleMouseUp}
     >
-      {viewWeights ? weight : ''}
+      {viewWeights ? weight : viewHeuristic ? (heuristic > 1000 ? '\u221E' : heuristic) : ''}
     </button>
   );
 }

@@ -1,7 +1,22 @@
 import * as Tabs from '@radix-ui/react-tabs';
+import { ToggleWeightsButton } from './buttons/toggle-weights.js';
+import { ToggleHeuristicButton } from './buttons/toggle-heuristic.js';
 import './sidebar.css';
+import { WallChanceSlider } from './sliders/wall-chance.js';
 
-export function Sidebar({ mousePosition, sidebarResizeRefObject }) {
+export function Sidebar({
+  grid,
+  mousePosition,
+  sidebarResizeRefObject,
+  viewWeights,
+  setViewWeights,
+  heuristic,
+  viewHeuristic,
+  setViewHeuristic,
+  setGrid,
+  wallChance,
+  setWallChance
+}) {
   function handleMouseDown() {
     sidebarResizeRefObject.current.x = mousePosition.current.x;
     sidebarResizeRefObject.current.mouseDown = true;
@@ -302,8 +317,8 @@ export function Sidebar({ mousePosition, sidebarResizeRefObject }) {
                 <h4>Random Walls</h4>
                 <p>
                   <br></br>
-                  Randomly turns blank squares into walls. You can change control the rate at which walls are
-                  placed under the advanced settings.
+                  Randomly turns blank squares into walls. You can control the random chance of walls being
+                  generated under the advanced settings.
                   <br></br>
                   <br></br>
                   <img src="/assets/random-walls-demo.gif" alt="Random walls demo gif"></img>
@@ -344,15 +359,23 @@ export function Sidebar({ mousePosition, sidebarResizeRefObject }) {
               <br></br>
               <h5>Change the % chance of the random walls maze generation placing a wall</h5>
               <br></br>
-              <div>
-                <label>Wall chance (10-90%)</label>
-                <input type="range" id="wall-chance" name="wall-chance" min="10" max="90"></input>
-              </div>
+              <WallChanceSlider wallChance={wallChance} setWallChance={setWallChance}></WallChanceSlider>
               <br></br>
               <h5>Show more info</h5>
               <br></br>
-              <button className="toggle-info-button">Toggle heuristic</button>
-              <button className="toggle-info-button">Toggle weights</button>
+              <ToggleHeuristicButton
+                grid={grid}
+                heuristic={heuristic}
+                viewHeuristic={viewHeuristic}
+                setViewHeuristic={setViewHeuristic}
+                setViewWeights={setViewWeights}
+                setGrid={setGrid}
+              ></ToggleHeuristicButton>
+              <ToggleWeightsButton
+                viewWeights={viewWeights}
+                setViewWeights={setViewWeights}
+                setViewHeuristic={setViewHeuristic}
+              ></ToggleWeightsButton>
             </div>
           </Tabs.Content>
         </Tabs.Root>

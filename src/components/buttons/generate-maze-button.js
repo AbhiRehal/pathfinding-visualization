@@ -8,7 +8,8 @@ export function GenerateMazeButton({
   grid,
   setGrid,
   mazeHasBeenVisualized,
-  setMazeHasBeenVisualized
+  setMazeHasBeenVisualized,
+  wallChance
 }) {
   async function handleClick() {
     if (algorithm == 'prims') {
@@ -23,7 +24,7 @@ export function GenerateMazeButton({
       );
     }
     if (algorithm == 'random') {
-      randomWalls(grid, setGrid, getRandomInt, getGridInfo, mazeHasBeenVisualized);
+      randomWalls(grid, setGrid, getRandomInt, getGridInfo, mazeHasBeenVisualized, wallChance);
     }
     setMazeHasBeenVisualized(true);
   }

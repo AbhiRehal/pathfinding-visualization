@@ -30,6 +30,9 @@ export default function Grid() {
   const [mazeHasBeenVisualized, setMazeHasBeenVisualized] = useState(false);
   const [viewWeights, setViewWeights] = useState(false);
   const [sidebarVisible, setSidebarVisible] = useState(false);
+  const [heuristic, setHeuristic] = useState('m');
+  const [viewHeuristic, setViewHeuristic] = useState(false);
+  const [wallChance, setWallChance] = useState(25);
 
   let mousePosition = useRef({ x: 0, y: 0 });
   let sidebarResizeRefObject = useRef({ mouseDown: false, x: 0 });
@@ -187,6 +190,7 @@ export default function Grid() {
           setGrid={setGrid}
           mazeHasBeenVisualized={mazeHasBeenVisualized}
           setMazeHasBeenVisualized={setMazeHasBeenVisualized}
+          wallChance={wallChance}
         ></GenerateMazeButton>
         <GenerateMazeDropdown setAlgorithm={setMazeGenAlgorithm}></GenerateMazeDropdown>
         <VisualizeButton
@@ -204,7 +208,6 @@ export default function Grid() {
           setMazeHasBeenVisualized={setMazeHasBeenVisualized}
           setPathHasBeenVisualized={setPathHasBeenVisualized}
         ></ClearAll>
-        {/* <ToggleWeightsButton viewWeights={viewWeights} setViewWeights={setViewWeights}></ToggleWeightsButton> */}
         <SidebarButton
           grid={grid}
           sidebarVisible={sidebarVisible}
@@ -245,6 +248,7 @@ export default function Grid() {
                     setStartNodeHint={setStartNodeHint}
                     viewWeights={viewWeights}
                     heuristic={ele.heuristic}
+                    viewHeuristic={viewHeuristic}
                   ></Node>
                 ))}
               </div>
@@ -252,7 +256,19 @@ export default function Grid() {
           </div>
         </div>
         {sidebarVisible ? (
-          <Sidebar mousePosition={mousePosition} sidebarResizeRefObject={sidebarResizeRefObject}></Sidebar>
+          <Sidebar
+            grid={grid}
+            mousePosition={mousePosition}
+            sidebarResizeRefObject={sidebarResizeRefObject}
+            viewWeights={viewWeights}
+            setViewWeights={setViewWeights}
+            heuristic={heuristic}
+            viewHeuristic={viewHeuristic}
+            setViewHeuristic={setViewHeuristic}
+            setGrid={setGrid}
+            wallChance={wallChance}
+            setWallChance={setWallChance}
+          ></Sidebar>
         ) : null}
       </div>
     </>
