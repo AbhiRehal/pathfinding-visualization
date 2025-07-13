@@ -78,3 +78,8 @@
 .share-button:active {
   opacity: 1;
 }
+
+.coming-soon {
+  pointer-events: none;
+  opacity: 0.33;
+}

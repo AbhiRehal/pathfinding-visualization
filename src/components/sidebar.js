@@ -341,22 +341,6 @@ export function Sidebar({
             <h3>Advanced Settings</h3>
             <br></br>
             <div>
-              <h5>Select the algorithms to compare:</h5>
-              <br></br>
-              <input type="checkbox" id="a-star-checkbox" name="a-star"></input>
-              <label for="a-star-checkbox">A*</label>
-              <br></br>
-              <input type="checkbox" id="bfs-checkbox" name="bfs-star"></input>
-              <label for="bfs-checkbox">BFS</label>
-              <br></br>
-              <input type="checkbox" id="dfs-checkbox" name="dfs-star"></input>
-              <label for="dfs-checkbox">DFS</label>
-              <br></br>
-              <input type="checkbox" id="dijkstras-checkbox" name="dijkstras-star"></input>
-              <label for="dijkstras-checkbox">Dijkstras</label>
-              <br></br>
-              <br></br>
-              <br></br>
               <h5>Change the % chance of the random walls maze generation placing a wall</h5>
               <br></br>
               <WallChanceSlider wallChance={wallChance} setWallChance={setWallChance}></WallChanceSlider>
@@ -376,6 +360,26 @@ export function Sidebar({
                 setViewWeights={setViewWeights}
                 setViewHeuristic={setViewHeuristic}
               ></ToggleWeightsButton>
+            </div>
+            <br></br>
+            <br></br>
+            <br></br>
+            <h4>Coming soon...</h4>
+            <div className="coming-soon">
+              <br></br>
+              <h5>Select the algorithms to compare:</h5>
+              <br></br>
+              <input type="checkbox" id="a-star-checkbox" name="a-star"></input>
+              <label for="a-star-checkbox">A*</label>
+              <br></br>
+              <input type="checkbox" id="bfs-checkbox" name="bfs-star"></input>
+              <label for="bfs-checkbox">BFS</label>
+              <br></br>
+              <input type="checkbox" id="dfs-checkbox" name="dfs-star"></input>
+              <label for="dfs-checkbox">DFS</label>
+              <br></br>
+              <input type="checkbox" id="dijkstras-checkbox" name="dijkstras-star"></input>
+              <label for="dijkstras-checkbox">Dijkstras</label>
             </div>
           </Tabs.Content>
         </Tabs.Root>
